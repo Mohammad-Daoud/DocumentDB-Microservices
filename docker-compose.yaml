@@ -1,0 +1,44 @@
+version: '3.7'
+
+services:
+
+  master-node:
+    image: 0xmohammad/documentdb-naming-server:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8000:8000"
+    networks:
+      - document-db-network
+    depends_on:
+      - naming-server
+    
+  replica-node:
+    image: 0xmohammad/documentdb-replica-node:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "9000:9000"
+    networks:
+      - document-db-network
+    depends_on:
+      - naming-server
+
+  api-gateway:
+    image: 0xmohammad/documentdb-api-gateway:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8080:8080"
+    networks:
+      - document-db-network
+    depends_on:
+      - naming-server
+
+  naming-server:
+    image: 0xmohammad/documentdb-naming-server:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8761:8761"
+    networks:
+      - document-db-network
+
+networks:
+  document-db-network:
