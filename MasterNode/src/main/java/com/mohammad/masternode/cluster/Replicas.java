@@ -23,6 +23,7 @@ public class Replicas implements Observer {
     public void killPort(){
         runShellCommand("npx kill-port "+getPort());
     }
+
     @Override
     public void update(){
         writeReplicaBash(portGenerator());

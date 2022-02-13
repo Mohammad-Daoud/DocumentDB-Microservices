@@ -14,9 +14,10 @@ import java.util.List;
 
 public class DirectoryLoader {
 
-    private static final AppLogger LOGGER =  AppLogger.create("Directory loader logger") ;
+    private static final AppLogger LOGGER = AppLogger.create("Directory loader logger");
 
-    private DirectoryLoader(){}
+    private DirectoryLoader() {
+    }
 
     public static List<File> loadDirs(File parent, int level) {
         List<File> dirs = new ArrayList<File>();
@@ -32,7 +33,7 @@ public class DirectoryLoader {
         return dirs;
     }
 
-    public static List<String> listFiles (String filePath){
+    public static List<String> listFiles(String filePath) {
         List<String> results = new ArrayList<String>();
         try {
             Files.walk(Paths.get(filePath))
@@ -45,16 +46,18 @@ public class DirectoryLoader {
     }
 
     public static String readFile(String filename) {
-        String content ="";
+        String content = "";
         try (BufferedReader fileReader = new BufferedReader(new FileReader(filename))) {
-                content = readFileHelper(fileReader);
+            content = readFileHelper(fileReader);
         } catch (IOException e) {
             LOGGER.logError(e);
         }
         return content;
     }
 
-    private static String readFileHelper(BufferedReader fileReader) throws IOException{
+
+
+    private static String readFileHelper(BufferedReader fileReader) throws IOException {
         StringBuilder fileContent = new StringBuilder();
         String lineContent;
         while ((lineContent = fileReader.readLine()) != null) {

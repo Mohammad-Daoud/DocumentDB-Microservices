@@ -2,16 +2,15 @@ package com.mohammad.replicanode.api.services;
 
 import com.mohammad.replicanode.schema.Collection;
 import com.mohammad.replicanode.schema.Database;
+import com.mohammad.replicanode.utils.CacheUtils;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.mohammad.replicanode.io.DirectoryLoader.*;
 import static com.mohammad.replicanode.utils.CacheUtils.getCacheObject;
-import static com.mohammad.replicanode.utils.CacheUtils.putIntoGlobalCache;
 
 @Service
 public class DatabaseService {
@@ -19,11 +18,14 @@ public class DatabaseService {
         return loadDatabases();
     }
     public static Database getDatabase(String databaseName) {
-        if (getCacheObject(databaseName) == null)
-            return getAllDatabases().stream()
+        if (getCacheObject(databaseName) == null) {
+            Database currentDatabase = getAllDatabases().stream()
                     .filter(d -> d.getDatabaseName().equals(databaseName))
                     .findFirst().orElseGet(() -> new Database(null));
-        
+
+            CacheUtils.add(currentDatabase.getDatabaseName(), currentDatabase);
+            return currentDatabase;
+        }
         return (Database) getCacheObject(databaseName);
     }
 
@@ -87,6 +89,7 @@ public class DatabaseService {
 
         }
 
+        CacheUtils.addALlIntoGlobalCache(databaseGroup);
         return databaseGroup;
     }
 

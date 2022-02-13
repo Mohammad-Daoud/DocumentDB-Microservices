@@ -1,9 +1,8 @@
 package com.mohammad.masternode.schema;
 
 import com.mohammad.masternode.index.btree.BTree;
-import com.mohammad.masternode.schema.build.SchemaBuilder;
+import com.mohammad.masternode.schema.build.SchemaCreator;
 
-import static com.mohammad.masternode.index.Index.createIndex;
 import static com.mohammad.masternode.utils.JSON.getJsonObject;
 import static com.mohammad.masternode.utils.JSON.isValidJson;
 
@@ -20,7 +19,7 @@ public class Document implements SchemaOperation {
 
     public void add(String jsonObject, String indexProperty) {
         if (isValidJson(jsonObject)) {
-            documentSchema.put(indexProperty, SchemaBuilder.build(jsonObject, indexProperty));
+            documentSchema.put(indexProperty, SchemaCreator.create(jsonObject, indexProperty));
         } else
             throw new IllegalArgumentException("the json entered invalid !!");
     }
@@ -28,7 +27,7 @@ public class Document implements SchemaOperation {
     @Override
     public void add(String jsonObject) {
         if (isValidJson(jsonObject)) {
-            documentSchema.put(SchemaBuilder.indexCounter(), SchemaBuilder.build(jsonObject));
+            documentSchema.put(SchemaCreator.indexCounter(), SchemaCreator.create(jsonObject));
         } else
             throw new IllegalArgumentException("the json entered invalid !!");
     }

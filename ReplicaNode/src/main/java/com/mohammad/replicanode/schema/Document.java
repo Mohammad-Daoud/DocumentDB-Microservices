@@ -2,10 +2,9 @@ package com.mohammad.replicanode.schema;
 
 
 import com.mohammad.replicanode.index.btree.BTree;
-import com.mohammad.replicanode.schema.build.SchemaBuilder;
-import static com.mohammad.replicanode.index.Index.createIndex;
+import com.mohammad.replicanode.schema.build.SchemaCreator;
+
 import static com.mohammad.replicanode.utils.JSON.getJsonObject;
-import static com.mohammad.replicanode.utils.JSON.isValidJson;
 
 public class Document implements SchemaOperation {
     private String documentName;
@@ -18,7 +17,7 @@ public class Document implements SchemaOperation {
     }
 
     public void add(String jsonObject,String indexProperty){
-            documentSchema.put(indexProperty, SchemaBuilder.build(jsonObject, indexProperty));
+            documentSchema.put(indexProperty, SchemaCreator.create(jsonObject, indexProperty));
         }
 
     @Override

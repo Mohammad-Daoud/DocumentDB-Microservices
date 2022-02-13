@@ -13,8 +13,6 @@ public class DatabaseController {
     @Autowired
     private DatabaseService service;
 
-    @Autowired
-    private MasterNode masterNode;
 
     @PostMapping("/master/add-database")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
@@ -27,7 +25,7 @@ public class DatabaseController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public synchronized void deleteDatabase(@PathVariable String databaseName){
         service.deleteDatabase(databaseName);
-        masterNode.notifyAllReplicas();
+
     }
 
 

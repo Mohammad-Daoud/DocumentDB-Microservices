@@ -24,7 +24,7 @@ public class UserService {
     private final List<User> USER_GROUP = new ArrayList<>();
     private final File USER_FILE
             = new File("C:/Users/mdss4/Documents/Atypon/DocumentDB/MasterNode/storage/admin/users/users-info.json");
-    private final AppLogger LOGGER =  AppLogger.create("UserLog");
+    private final AppLogger LOGGER =  AppLogger.create("User Log :");
 
 
 

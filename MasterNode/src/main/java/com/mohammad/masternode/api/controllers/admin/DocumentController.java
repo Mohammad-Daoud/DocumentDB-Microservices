@@ -5,6 +5,7 @@ import com.mohammad.masternode.api.services.DocumentService;
 import com.mohammad.masternode.cluster.MasterNode;
 import com.mohammad.masternode.schema.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +15,7 @@ import java.util.Map;
 public class DocumentController {
     @Autowired
     private DocumentService service;
-    @Autowired
-    private MasterNode masterNode;
+
 
     @PostMapping("/master/add-doc/{databaseName}/{collectionName}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
@@ -23,7 +23,7 @@ public class DocumentController {
                             @PathVariable String collectionName,
                             @RequestBody Document document) {
         service.addDocument(databaseName, collectionName, document);
-        masterNode.notifyAllReplicas();
+
 
     }
 
@@ -33,7 +33,7 @@ public class DocumentController {
                                @PathVariable String collectionName,
                                @RequestParam String documentName) {
         service.deleteDocument(databaseName, collectionName, documentName);
-        masterNode.notifyAllReplicas();
+
     }
 
     @PostMapping("/master/add-json/{databaseName}/{collectionName}/{documentName}")
@@ -43,7 +43,6 @@ public class DocumentController {
                               @PathVariable String documentName,
                               @RequestBody Map<String, Object> json) {
         service.addJSON(databaseName, collectionName, documentName, json);
-        masterNode.notifyAllReplicas();
 
     }
 
@@ -55,6 +54,18 @@ public class DocumentController {
                               @PathVariable String index,
                               @RequestBody Map<String, Object> json) {
         service.addJSON(databaseName, collectionName, documentName, json, index);
-        masterNode.notifyAllReplicas();
+
+    }
+
+
+    @DeleteMapping("/master/delete-json/{databaseName}/{collectionName}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public void deleteJsonObject(@PathVariable String databaseName,
+                               @PathVariable String collectionName,
+                               @PathVariable String documentName,
+                               @PathVariable String index) {
+
+        service.deleteJSON(databaseName, collectionName, documentName,index);
+
     }
 }

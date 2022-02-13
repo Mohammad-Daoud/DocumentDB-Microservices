@@ -3,8 +3,9 @@ package com.mohammad.replicanode.schema;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.util.HashMap;
+
+
 @JsonIgnoreProperties(value = {"documentGroup"})
 public class Collection implements SchemaOperation {
     private String collectionName;
