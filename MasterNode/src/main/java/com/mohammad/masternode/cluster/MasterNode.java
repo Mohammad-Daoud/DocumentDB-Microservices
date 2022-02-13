@@ -26,9 +26,6 @@ public class MasterNode implements Subject {
 
     @Override
     public void notifyAllReplicas() {
-        if (threadCounter() > 20)
-            addReplica(Replicas.create());
-
         REPLICA_GROUP.forEach(Observer::update);
     }
 

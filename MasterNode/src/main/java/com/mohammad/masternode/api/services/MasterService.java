@@ -11,7 +11,7 @@ public class MasterService {
     @Autowired
     MasterNode controller;
 
-    private int replicaSize ;
+    private int replicaSize  ;
 
     public boolean isThereChanges() {
         replicaSize = controller.getReplicaGroupSize();
