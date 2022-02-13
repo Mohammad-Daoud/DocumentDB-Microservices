@@ -40,6 +40,7 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests(authorize ->{
+                    authorize.antMatchers("/master/get-replicas").permitAll();
                     authorize.antMatchers("/master/**").hasAuthority("ROLE_ADMIN");
                 })
                 .authorizeRequests()

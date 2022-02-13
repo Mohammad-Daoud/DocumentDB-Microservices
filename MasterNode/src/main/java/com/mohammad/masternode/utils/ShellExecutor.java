@@ -1,20 +1,24 @@
 package com.mohammad.masternode.utils;
 
-import com.mohammad.masternode.io.DirectoryCreator;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 
-public class ShellExecutor {
+public class ShellExecutor extends Thread{
     private static final AppLogger LOGGER =  AppLogger.create("Shell Executor logger : ");
-    private ShellExecutor(){
-        throw new AssertionError();
+    private final String COMMAND;
+    private ShellExecutor(String command){
+        this.COMMAND = command;
     }
 
+    public static ShellExecutor create(String command){
+        return new ShellExecutor(command);
+    }
 
-    public static synchronized void runShellCommand(String command) {
+    @Override
+    public void run (){
+        runShellCommand(COMMAND);
+    }
+    private static void runShellCommand(String command) {
         try {
             Process proc = Runtime.getRuntime().exec(command);
             proc.waitFor();
