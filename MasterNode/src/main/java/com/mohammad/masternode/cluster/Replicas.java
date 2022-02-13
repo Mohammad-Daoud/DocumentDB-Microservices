@@ -26,6 +26,13 @@ public class Replicas implements Observer {
         executor.start();
     }
 
+    @Override
+    public void killReplica() {
+        String killCommand = "for /f \"tokens=5\" %a in ('netstat -aon ^| find \":\""+getPort()+" ^| find \"LISTENING\"') do taskkill /f /pid %a\n";
+        executor = ShellExecutor.create(killCommand);
+        executor.start();
+    }
+
     private int portGenerator() {
         return ++port;
     }

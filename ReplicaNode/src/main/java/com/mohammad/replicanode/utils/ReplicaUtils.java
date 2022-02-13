@@ -4,7 +4,7 @@ import org.springframework.web.client.RestTemplate;
 
 
 public class ReplicaUtils {
-    private static final String URI = "http://localhost:8000/master/get-replicas";
+    private static final String URI = "http://localhost:8000/master/is-change";
     private ReplicaUtils() {
         throw new AssertionError();
     }

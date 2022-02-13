@@ -32,7 +32,7 @@ public class MasterNode implements Subject {
     public int getReplicaGroupSize(){
         return getReplicaGroup().size();
     }
-    private static List<Observer> getReplicaGroup() {
+    public static List<Observer> getReplicaGroup() {
         return REPLICA_GROUP;
     }
 }
