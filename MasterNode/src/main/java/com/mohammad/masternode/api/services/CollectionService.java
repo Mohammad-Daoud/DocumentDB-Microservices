@@ -15,7 +15,7 @@ import static com.mohammad.masternode.api.services.DatabaseService.getDatabase;
 public class CollectionService {
 
     @Autowired
-    private MasterNode masterNode;
+    private MasterNode controller;
 
     public synchronized void addCollection(String databaseName, Collection collection) {
         getDatabase(databaseName).add(collection.getCollectionName());
@@ -25,13 +25,13 @@ public class CollectionService {
                 + "/"
                 + collection.getCollectionName());
 
-        masterNode.notifyAllReplicas();
+        controller.notifyAllReplicas();
     }
 
     public synchronized void deleteCollection(String databaseName, String collectionName) {
         getDatabase(databaseName).getCollectionGroup().remove(collectionName);
         DirectoryRemover.getInstance().deleteDir(databaseName + "/" + collectionName);
-        masterNode.notifyAllReplicas();
+        controller.notifyAllReplicas();
     }
 
 

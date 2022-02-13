@@ -20,7 +20,7 @@ import static com.mohammad.masternode.schema.build.SchemaCreator.getObjectID;
 public class DocumentService {
 
     @Autowired
-    private MasterNode masterNode;
+    private MasterNode controller;
 
     public synchronized void addDocument(String databaseName,
                                          String collectionName,
@@ -36,7 +36,7 @@ public class DocumentService {
                         + collectionName
                         + "/"
                         + document.getDocumentName());
-        masterNode.notifyAllReplicas();
+        controller.notifyAllReplicas();
     }
 
     public synchronized void deleteDocument(String databaseName,
@@ -49,7 +49,7 @@ public class DocumentService {
                 .remove(documentName);
         DirectoryRemover.getInstance().deleteDir(databaseName + "/" + collectionName + "/" + documentName);
 
-        masterNode.notifyAllReplicas();
+        controller.notifyAllReplicas();
     }
 
     public synchronized void addJSON(String databaseName,
@@ -73,7 +73,7 @@ public class DocumentService {
                         + "/"
                         + realIndex, SchemaCreator.create(JSON.toJson(json), realIndex));
 
-        masterNode.notifyAllReplicas();
+        controller.notifyAllReplicas();
     }
 
     public synchronized void addJSON(String databaseName,
@@ -83,7 +83,7 @@ public class DocumentService {
 
         getDatabase(databaseName).get(collectionName).get(documentName).add(JSON.toJson(json));
         DirectoryCreator.getInstance().writeFile(databaseName + "/" + collectionName + "/" + documentName + "/" + getObjectID(), JSON.toJson(json));
-        masterNode.notifyAllReplicas();
+        controller.notifyAllReplicas();
     }
 
     public synchronized void deleteJSON(String databaseName,
@@ -91,7 +91,7 @@ public class DocumentService {
                                         String documentName,
                                         String jsonIndex) {
         DirectoryRemover.getInstance().deleteFile(databaseName + "/" + collectionName + "/" + documentName + "/" + jsonIndex);
-        masterNode.notifyAllReplicas();
+        controller.notifyAllReplicas();
     }
 
 

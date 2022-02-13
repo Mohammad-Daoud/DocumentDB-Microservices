@@ -1,4 +1,4 @@
-package com.mohammad.masternode.api.controllers.admin;
+package com.mohammad.masternode.api.controllers;
 
 
 import com.mohammad.masternode.api.services.CollectionService;

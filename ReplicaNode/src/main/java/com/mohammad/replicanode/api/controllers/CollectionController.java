@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CollectionController {
     @Autowired
-   private CollectionService service;
+     private CollectionService service;
 
     @GetMapping("/read/get-collection/{databaseName}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")

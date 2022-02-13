@@ -22,19 +22,19 @@ public class DatabaseService {
 
 
     @Autowired
-    private MasterNode masterNode;
+    private MasterNode controller;
 
     public synchronized void addDatabase(Database database) {
         Database newDatabase = new Database(database.getDatabaseName());
         DATABASE_GROUP.add(newDatabase);
         DirectoryCreator.getInstance().createDirectory(database.getDatabaseName());
-        masterNode.notifyAllReplicas();
+        controller.notifyAllReplicas();
     }
 
     public synchronized void deleteDatabase(String databaseName) {
         DATABASE_GROUP.removeIf(database -> database.getDatabaseName().equals(databaseName));
         DirectoryRemover.getInstance().deleteDir(databaseName);
-        masterNode.notifyAllReplicas();
+        controller.notifyAllReplicas();
 
     }
 
