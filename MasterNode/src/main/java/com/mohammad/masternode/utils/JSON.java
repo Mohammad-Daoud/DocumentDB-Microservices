@@ -1,6 +1,7 @@
 package com.mohammad.masternode.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public class JSON {
@@ -22,6 +23,11 @@ public class JSON {
         }
     }
 
+    public static String addJsonProperty(String jsonObject,String propertyKey,String propertyValue){
+        JsonObject object = new Gson().fromJson(jsonObject, JsonObject.class);
+        object.addProperty(propertyKey,propertyValue);
+        return object.toString();
+    }
     public static String getJsonObject(String jsonString, String indexProperty){
         JsonObject jsonObject = new Gson().fromJson(jsonString, JsonObject.class);
         return jsonObject.get(indexProperty).getAsString();

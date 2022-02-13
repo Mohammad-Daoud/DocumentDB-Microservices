@@ -4,6 +4,7 @@ package com.mohammad.replicanode.schema;
 import com.mohammad.replicanode.index.btree.BTree;
 import com.mohammad.replicanode.schema.build.SchemaBuilder;
 import static com.mohammad.replicanode.index.Index.createIndex;
+import static com.mohammad.replicanode.utils.JSON.getJsonObject;
 import static com.mohammad.replicanode.utils.JSON.isValidJson;
 
 public class Document implements SchemaOperation {
@@ -17,19 +18,12 @@ public class Document implements SchemaOperation {
     }
 
     public void add(String jsonObject,String indexProperty){
-        if (isValidJson(jsonObject)) {
-            indexProperty = createIndex(jsonObject, indexProperty);
             documentSchema.put(indexProperty, SchemaBuilder.build(jsonObject, indexProperty));
         }
-        throw new IllegalArgumentException("the json entered invalid !!");
-    }
 
     @Override
     public void add(String jsonObject){
-        if (isValidJson(jsonObject)){
-            documentSchema.put(SchemaBuilder.indexCounter(), SchemaBuilder.build(jsonObject));
-        }else
-            throw new IllegalArgumentException("the json entered invalid !!");
+            documentSchema.put(getJsonObject(jsonObject,"_objectID"), jsonObject);
     }
 
     @Override

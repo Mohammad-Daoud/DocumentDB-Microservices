@@ -6,10 +6,10 @@ public class SchemaBuilder {
 
 
     public static String build(String jsonObject){
-        return "{\""+_objectID+ index +"\":\n"+jsonObject+"}";
+        return "{\""+_objectID+ "\":"+index+",\n"+jsonObject+"}";
     }
     public static String build(String jsonObject, String indexProperty){
-        return "{\""+_objectID+indexProperty+"\":\n"+jsonObject+"}";
+        return "{\""+_objectID+"\":"+indexProperty+",\n"+jsonObject+"}";
     }
 
 

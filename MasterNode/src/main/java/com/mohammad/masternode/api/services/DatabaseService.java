@@ -93,7 +93,7 @@ public class DatabaseService {
                                                             .get(databaseFinalIterator)
                                                             .get(collectionFolder.getName())
                                                             .get(documentFolder.getName())
-                                                            .add(readFile(getMasterDir()
+                                                            .addExistJSON(readFile(getMasterDir()
                                                                     + "/"
                                                                     + databaseGroup.get(collectionFinalIterator).getDatabaseName()
                                                                     + "/"

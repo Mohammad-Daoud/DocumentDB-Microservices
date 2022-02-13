@@ -1,9 +1,11 @@
 package com.mohammad.masternode.api.services;
 
 import com.mohammad.masternode.cluster.MasterNode;
+import com.mohammad.masternode.index.Index;
 import com.mohammad.masternode.io.DirectoryCreator;
 import com.mohammad.masternode.io.DirectoryRemover;
 import com.mohammad.masternode.schema.Document;
+import com.mohammad.masternode.schema.build.SchemaBuilder;
 import com.mohammad.masternode.utils.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,10 +58,11 @@ public class DocumentService {
                                      Map<String, Object> json,
                                      String index) {
 
+        String realIndex = Index.createIndex(JSON.toJson(json),index);
         getDatabase(databaseName)
                 .get(collectionName)
                 .get(documentName)
-                .add(JSON.toJson(json), index);
+                .add(JSON.toJson(json),realIndex );
 
         DirectoryCreator.getInstance().writeFile(
                 databaseName
@@ -68,7 +71,7 @@ public class DocumentService {
                 + "/"
                 + documentName
                 +"/"
-                +index, JSON.toJson(json));
+                +realIndex,  SchemaBuilder.build(JSON.toJson(json),realIndex));
         masterNode.notifyAllReplicas();
     }
 

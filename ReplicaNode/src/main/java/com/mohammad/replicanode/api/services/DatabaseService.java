@@ -1,5 +1,6 @@
 package com.mohammad.replicanode.api.services;
 
+import com.mohammad.replicanode.schema.Collection;
 import com.mohammad.replicanode.schema.Database;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,7 @@ import static com.mohammad.replicanode.utils.CacheUtils.putIntoGlobalCache;
 @Service
 public class DatabaseService {
     public static List<Database> getAllDatabases() {
-        List<Database> databaseGroup = new ArrayList<>();
-        return loadDatabases(databaseGroup);
+        return loadDatabases();
     }
     public static Database getDatabase(String databaseName) {
         if (getCacheObject(databaseName) == null)

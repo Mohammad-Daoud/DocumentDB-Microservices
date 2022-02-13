@@ -12,7 +12,7 @@ public class UserController {
     @Autowired
     UserService service;
 
-    @PutMapping("/master/add-user")
+    @PostMapping ("/master/add-user")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public synchronized void addUser(@RequestBody String username,
                                      @RequestBody String password,

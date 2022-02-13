@@ -11,7 +11,7 @@ public class Collection implements SchemaOperation {
     private HashMap<String, Document> documentGroup = new HashMap<>();
 
     public Collection(){}
-    protected Collection(String collectionName) {
+    public Collection(String collectionName) {
         this.collectionName = collectionName;
     }
 
