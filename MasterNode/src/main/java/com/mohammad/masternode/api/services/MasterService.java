@@ -26,7 +26,7 @@ public class MasterService {
     }
 
     public List<Observer> getReplicaGroup(){
-        return getReplicaGroup();
+        return controller.getReplica();
     }
 
 }
