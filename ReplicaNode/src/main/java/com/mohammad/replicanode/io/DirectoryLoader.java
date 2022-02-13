@@ -13,45 +13,24 @@ import java.util.List;
 
 public class DirectoryLoader {
 
-    public static final File MASTER_DIR = new File("C:/Users/mdss4/Documents/Atypon/DocumentDB/MasterNode/storage/master-node");
+    private static final File MASTER_DIR = new File("C:/Users/mdss4/Documents/Atypon/DocumentDB/MasterNode/storage/master-node");
     private static final AppLogger LOGGER =  AppLogger.create("Directory loader logger") ;
 
     private DirectoryLoader(){}
 
-    public static List<String> loadDirs(File parent, int level) {
+    public static List<File> loadDirs(File parent, int level) {
         List<File> dirs = new ArrayList<File>();
-        List<String> finalResult = new ArrayList<>();
         File[] files = parent.listFiles();
-        if (files == null) return finalResult; // empty dir
+        if (files == null) return dirs; // empty dir
 
         for (File f : files) {
             if (f.isDirectory()) {
                 if (level == 0) dirs.add(f);
-                else if (level > 0) finalResult.addAll(loadDirs(f, level - 1));
+                else if (level > 0) dirs.addAll(loadDirs(f, level - 1));
             }
         }
-
-        dirs.forEach(d -> finalResult.add(d.getName()));
-        return finalResult;
+        return dirs;
     }
-
-/*    public String findDir(File root, String name) {
-        if (root.getName().equals(name)) {
-            return root.getName();
-        }
-        File[] files = root.listFiles();
-        if (files != null) {
-            for (File f : files) {
-                if (f.isDirectory()) {
-                    String myResult = findDir(f, name);
-                    if (myResult != null) {
-                        return myResult;
-                    }
-                }
-            }
-        }
-        return null;
-    }*/
 
     public static List<String> listFiles (String filePath){
         List<String> results = new ArrayList<String>();
@@ -65,9 +44,9 @@ public class DirectoryLoader {
         return results;
     }
 
-    public static String readFile(String filename) {
+    public static String readFile(String filePath) {
         String content ="";
-        try (BufferedReader fileReader = new BufferedReader(new FileReader(filename))) {
+        try (BufferedReader fileReader = new BufferedReader(new FileReader(filePath))) {
                 content = readFileHelper(fileReader);
         } catch (IOException e) {
             LOGGER.logError(e);
@@ -82,5 +61,9 @@ public class DirectoryLoader {
             fileContent.append(lineContent);
         }
         return fileContent.toString();
+    }
+
+    public static File getMasterDir() {
+        return MASTER_DIR;
     }
 }

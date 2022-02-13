@@ -1,10 +1,13 @@
 package com.mohammad.replicanode.schema;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.HashMap;
 
 import static com.mohammad.replicanode.utils.JSON.toJson;
 
+@JsonIgnoreProperties(value = {"collectionGroup"})
 public class Database implements SchemaOperation {
 
     private  String databaseName;
@@ -36,15 +39,20 @@ public class Database implements SchemaOperation {
         return collectionGroup;
     }
 
-    public String getCollectionAsJSON() {
-        return toJson(collectionGroup);
+
+    public void setDatabaseName(String databaseName) {
+        this.databaseName = databaseName;
+    }
+
+    public void setCollectionGroup(HashMap<String, Collection> collectionGroup) {
+        this.collectionGroup = collectionGroup;
     }
 
     @Override
     public String toString() {
         return "{" +
                 databaseName +
-                ":" + getCollectionAsJSON() +
+                ":" + collectionGroup +
                 '}';
     }
 }

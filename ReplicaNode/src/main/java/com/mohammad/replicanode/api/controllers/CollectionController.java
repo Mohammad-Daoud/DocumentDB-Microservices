@@ -14,7 +14,7 @@ public class CollectionController {
     @Autowired
    private CollectionService service;
 
-    @GetMapping("/read/getCacheObject-collection/{databaseName}")
+    @GetMapping("/read/get-collection/{databaseName}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
     public Collection getCollection(@PathVariable String databaseName,
                                     @RequestParam String name) {

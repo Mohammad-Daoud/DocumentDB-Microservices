@@ -9,7 +9,7 @@ import static com.mohammad.replicanode.utils.CacheUtils.getCacheObject;
 @Service
 public class DocumentService {
 
-    public Document getDocuments(String databaseName, String collectionName, String documentName) {
+    public Document getDocument(String databaseName, String collectionName, String documentName) {
         if (getCacheObject(documentName) == null)
             return getDatabase(databaseName)
                     .get(collectionName)
@@ -17,10 +17,11 @@ public class DocumentService {
 
         return (Document) getCacheObject(documentName);
     }
-    public String getJson(String databaseName,
-                          String collectionName,
-                          String documentName,
-                          String jsonIndex) {
+
+    public String getJsonObject(String databaseName,
+                                String collectionName,
+                                String documentName,
+                                String jsonIndex) {
 
         if (getCacheObject(jsonIndex) == null)
             return getDatabase(databaseName).get(collectionName).get(documentName).get(jsonIndex);

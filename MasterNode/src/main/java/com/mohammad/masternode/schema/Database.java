@@ -34,6 +34,14 @@ public class Database implements SchemaOperation {
         return collectionGroup;
     }
 
+    public void setDatabaseName(String databaseName) {
+        this.databaseName = databaseName;
+    }
+
+    public void setCollectionGroup(HashMap<String, Collection> collectionGroup) {
+        this.collectionGroup = collectionGroup;
+    }
+
     @Override
     public String toString() {
         return "{\n" +

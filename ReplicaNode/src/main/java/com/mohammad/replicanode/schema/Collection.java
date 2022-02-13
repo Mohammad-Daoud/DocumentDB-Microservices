@@ -2,8 +2,10 @@ package com.mohammad.replicanode.schema;
 
 
 
-import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.HashMap;
+@JsonIgnoreProperties(value = {"documentGroup"})
 public class Collection implements SchemaOperation {
     private String collectionName;
     private HashMap<String, Document> documentGroup = new HashMap<>();
@@ -44,7 +46,7 @@ public class Collection implements SchemaOperation {
 
     @Override
     public String toString() {
-        return "Collection{" +
+        return "{" +
                 collectionName + '\'' +
                 "," + documentGroup +
                 '}';

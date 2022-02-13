@@ -36,7 +36,7 @@ public class DocumentController {
         masterNode.notifyAllReplicas();
     }
 
-    @PostMapping("/admin/add-json/{databaseName}/{collectionName}/{documentName}")
+    @PostMapping("/master/add-json/{databaseName}/{collectionName}/{documentName}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void putJsonObject(@PathVariable String databaseName,
                               @PathVariable String collectionName,
@@ -47,7 +47,7 @@ public class DocumentController {
 
     }
 
-    @PostMapping("/admin/add-json/{databaseName}/{collectionName}/{documentName}/{index}")
+    @PostMapping("/master/add-json/{databaseName}/{collectionName}/{documentName}/{index}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void putJsonObject(@PathVariable String databaseName,
                               @PathVariable String collectionName,

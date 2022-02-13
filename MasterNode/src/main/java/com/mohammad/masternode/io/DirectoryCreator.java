@@ -40,7 +40,7 @@ public class DirectoryCreator {
     }
 
     public synchronized void writeFile(String dirPath, String content) {
-        File file = new File(dirPath);
+        File file = new File(MASTER_DIR+"/"+dirPath);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             writer.write(content);

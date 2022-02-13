@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class RestDaoAuthentication extends DaoAuthenticationProvider {
     private final PasswordEncoder PASSWORD_ENCODER = new SHA512();
+
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
         if (authentication.getCredentials() == null) {

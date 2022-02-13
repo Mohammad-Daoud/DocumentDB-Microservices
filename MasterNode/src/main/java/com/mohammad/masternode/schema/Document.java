@@ -27,8 +27,9 @@ public class Document implements SchemaOperation {
 
     @Override
     public void add(String jsonObject) {
-        if (isValidJson(jsonObject))
-            documentSchema.put(SchemaBuilder.idCounter(), SchemaBuilder.build(jsonObject));
+        if (isValidJson(jsonObject)){
+            documentSchema.put(SchemaBuilder.indexCounter(), SchemaBuilder.build(jsonObject));
+        }else
         throw new IllegalArgumentException("the json entered invalid !!");
     }
 
@@ -48,10 +49,6 @@ public class Document implements SchemaOperation {
 
     public String getDocumentName() {
         return documentName;
-    }
-
-    public BTree<String, String> getDocumentSchema() {
-        return documentSchema;
     }
 
     @Override

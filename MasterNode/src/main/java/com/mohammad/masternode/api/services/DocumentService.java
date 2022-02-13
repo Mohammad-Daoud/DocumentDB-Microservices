@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 import static com.mohammad.masternode.api.services.DatabaseService.getDatabase;
-import static com.mohammad.masternode.io.DirectoryCreator.getMasterDir;
+import static com.mohammad.masternode.schema.build.SchemaBuilder.getObjectID;
 
 
 @Service
@@ -28,7 +28,13 @@ public class DocumentService {
                 .getDocumentGroup()
                 .put(document.getDocumentName(), document);
 
-        masterNode.notifyAllReplicas();
+        DirectoryCreator.getInstance().createDirectory(
+                         databaseName
+                        + "/"
+                        + collectionName
+                        + "/"
+                        + document.getDocumentName());
+                masterNode.notifyAllReplicas();
     }
 
     public synchronized void deleteDocument(String databaseName,
@@ -40,6 +46,7 @@ public class DocumentService {
                 .getDocumentGroup()
                 .remove(documentName);
         DirectoryRemover.getInstance().deleteDir(databaseName + "/" + collectionName + "/" + documentName);
+
         masterNode.notifyAllReplicas();
     }
 
@@ -54,13 +61,14 @@ public class DocumentService {
                 .get(documentName)
                 .add(JSON.toJson(json), index);
 
-        DirectoryCreator.getInstance().writeFile(getMasterDir()
-                + "/"
-                + databaseName
+        DirectoryCreator.getInstance().writeFile(
+                databaseName
                 + "/"
                 + collectionName
                 + "/"
-                + documentName , JSON.toJson(json));
+                + documentName
+                +"/"
+                +index, JSON.toJson(json));
         masterNode.notifyAllReplicas();
     }
 
@@ -70,7 +78,7 @@ public class DocumentService {
                                      Map<String, Object> json) {
 
         getDatabase(databaseName).get(collectionName).get(documentName).add(JSON.toJson(json));
-        DirectoryCreator.getInstance().writeFile(getMasterDir() + "/" + databaseName + "/" + collectionName + "/" + documentName, JSON.toJson(json));
+        DirectoryCreator.getInstance().writeFile(databaseName + "/" + collectionName + "/" + documentName+"/"+ getObjectID(), JSON.toJson(json));
         masterNode.notifyAllReplicas();
     }
 

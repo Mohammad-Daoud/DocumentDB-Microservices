@@ -8,7 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class DataBaseController {
+public class DatabaseController {
 
     @Autowired
     private DatabaseService service;

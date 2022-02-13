@@ -9,27 +9,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static com.mohammad.masternode.api.services.DatabaseService.getDatabase;
-import static com.mohammad.masternode.api.services.DatabaseService.getGlobalCache;
 
 
 @Service
-public class CollectionService  {
+public class CollectionService {
 
     @Autowired
     private MasterNode masterNode;
 
     public synchronized void addCollection(String databaseName, Collection collection) {
         getDatabase(databaseName).add(collection.getCollectionName());
-        DirectoryCreator.getInstance().createDirectory(databaseName + "/" + collection.getCollectionName());
-        getGlobalCache().put(collection.getCollectionName(), collection);
+        DirectoryCreator
+                .getInstance()
+                .createDirectory(databaseName
+                + "/"
+                + collection.getCollectionName());
+
         masterNode.notifyAllReplicas();
     }
 
     public synchronized void deleteCollection(String databaseName, String collectionName) {
         getDatabase(databaseName).getCollectionGroup().remove(collectionName);
-        getGlobalCache().evict(collectionName);
         DirectoryRemover.getInstance().deleteDir(databaseName + "/" + collectionName);
         masterNode.notifyAllReplicas();
     }
+
+
 
 }

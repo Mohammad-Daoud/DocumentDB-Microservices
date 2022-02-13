@@ -16,11 +16,11 @@ public class DocumentController {
     private DocumentService service;
     @GetMapping("/read/get-doc/{databaseName}/{collectionName}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
-    public Document getDocument(@PathVariable String databaseName,
+    public String getDocument(@PathVariable String databaseName,
                                 @PathVariable String collectionName,
                                 @RequestParam String name) {
 
-        return service.getDocuments(databaseName, collectionName, name);
+        return service.getDocument(databaseName, collectionName, name).toString();
     }
 
     @GetMapping("/read/get-json/{databaseName}/{collectionName}/{documentName}")
@@ -29,6 +29,6 @@ public class DocumentController {
                           @PathVariable String collectionName,
                           @PathVariable String documentName,
                           @RequestParam String index) {
-        return service.getJson(databaseName, collectionName, documentName, index);
+        return service.getJsonObject(databaseName, collectionName, documentName, index);
     }
 }
