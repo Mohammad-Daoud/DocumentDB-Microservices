@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class MasterController {
@@ -22,7 +23,7 @@ public class MasterController {
 
     @GetMapping("/master/get-replicas")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public List<Observer> getReplicaGroup(){
+    public Set<Observer> getReplicaGroup(){
         return controllerService.getReplicaGroup();
     }
 }

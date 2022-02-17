@@ -18,9 +18,7 @@ public class AppLogger {
         return new AppLogger(logName);
     }
 
-    public void log(String message){
-        LOGGER.log(LOGGER.getLevel(),message);
-    }
+
     public void logError (Exception e){
         LOGGER.log(Level.SEVERE,e.getMessage());
     }

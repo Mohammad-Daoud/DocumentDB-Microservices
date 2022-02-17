@@ -5,7 +5,7 @@ import com.mohammad.masternode.index.Index;
 import com.mohammad.masternode.io.DirectoryCreator;
 import com.mohammad.masternode.io.DirectoryRemover;
 import com.mohammad.masternode.schema.Document;
-import com.mohammad.masternode.schema.build.SchemaCreator;
+import com.mohammad.masternode.schema.create.SchemaCreator;
 import com.mohammad.masternode.utils.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,14 +13,12 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 import static com.mohammad.masternode.api.services.DatabaseService.getDatabase;
-import static com.mohammad.masternode.schema.build.SchemaCreator.getObjectID;
+import static com.mohammad.masternode.schema.create.SchemaCreator.getObjectID;
 
 
 @Service
 public class DocumentService {
 
-    @Autowired
-    private MasterNode controller;
 
     public synchronized void addDocument(String databaseName,
                                          String collectionName,
@@ -36,7 +34,7 @@ public class DocumentService {
                         + collectionName
                         + "/"
                         + document.getDocumentName());
-        controller.notifyAllReplicas();
+        MasterNode.getInstance().notifyAllReplicas();
     }
 
     public synchronized void deleteDocument(String databaseName,
@@ -49,7 +47,7 @@ public class DocumentService {
                 .remove(documentName);
         DirectoryRemover.getInstance().deleteDir(databaseName + "/" + collectionName + "/" + documentName);
 
-        controller.notifyAllReplicas();
+        MasterNode.getInstance().notifyAllReplicas();
     }
 
     public synchronized void addJSON(String databaseName,
@@ -73,7 +71,7 @@ public class DocumentService {
                         + "/"
                         + realIndex, SchemaCreator.create(JSON.toJson(json), realIndex));
 
-        controller.notifyAllReplicas();
+        MasterNode.getInstance().notifyAllReplicas();
     }
 
     public synchronized void addJSON(String databaseName,
@@ -83,7 +81,8 @@ public class DocumentService {
 
         getDatabase(databaseName).get(collectionName).get(documentName).add(JSON.toJson(json));
         DirectoryCreator.getInstance().writeFile(databaseName + "/" + collectionName + "/" + documentName + "/" + getObjectID(), JSON.toJson(json));
-        controller.notifyAllReplicas();
+
+        MasterNode.getInstance().notifyAllReplicas();
     }
 
     public synchronized void deleteJSON(String databaseName,
@@ -91,7 +90,7 @@ public class DocumentService {
                                         String documentName,
                                         String jsonIndex) {
         DirectoryRemover.getInstance().deleteFile(databaseName + "/" + collectionName + "/" + documentName + "/" + jsonIndex);
-        controller.notifyAllReplicas();
+        MasterNode.getInstance().notifyAllReplicas();
     }
 
 

@@ -116,20 +116,23 @@ public class BTree<Key extends Comparable<Key>, Value> {
 
     @Override
     public String toString() {
-        return toString(root, height, "") + "\n";
+        return toString(root, height) + "\n";
     }
 
-    private String toString(Node rootNode, int height, String indent) {
+    private String toString(Node rootNode, int height) {
         StringBuilder resultString = new StringBuilder();
         Entry[] children = rootNode.children;
 
         if (height == 0) {
             for (int j = 0; j < rootNode.childrenNum; j++)
-                resultString.append(indent + children[j].key + " " + children[j].value + "\n");
+                if (rootNode.childrenNum - j == 1)
+                    resultString.append(children[j].value + "\n ");
+                else
+                    resultString.append( children[j].value + ",\n ");
         } else {
             for (int j = 0; j < rootNode.childrenNum; j++) {
-                if (j > 0) resultString.append(indent + "(" + children[j].key + ")\n");
-                resultString.append(toString(children[j].next, height - 1, indent + "     "));
+                if (j > 0) resultString.append(  "(" + children[j].key + ")\n");
+                resultString.append(toString(children[j].next, height - 1 ));
             }
         }
         return resultString.toString();

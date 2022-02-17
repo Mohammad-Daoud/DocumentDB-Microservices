@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.util.Comparator;
 
 import static com.mohammad.masternode.io.DirectoryCreator.getMasterDir;
+import static java.rmi.server.LogStream.log;
 
 public class DirectoryRemover {
     private static final AppLogger LOGGER =  AppLogger.create("DirectoryRemover LOGGER");
@@ -44,7 +45,7 @@ public class DirectoryRemover {
         File fileToDelete = new File(getMasterDir()+"/"+filePath);
 
         if (fileToDelete.delete())
-            LOGGER.log("file"+fileToDelete.getName()+" deleted successfully !! ");
+            log("file"+fileToDelete.getName()+" deleted successfully !! ");
         else
             LOGGER.logError(new NotFoundException("directory is NOT FOUND !!"));
     }

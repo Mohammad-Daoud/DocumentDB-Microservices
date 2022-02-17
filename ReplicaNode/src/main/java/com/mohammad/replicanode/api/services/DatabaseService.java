@@ -17,6 +17,7 @@ public class DatabaseService {
     public static List<Database> getAllDatabases() {
         return loadDatabases();
     }
+
     public static Database getDatabase(String databaseName) {
         if (getCacheObject(databaseName) == null) {
             Database currentDatabase = getAllDatabases().stream()

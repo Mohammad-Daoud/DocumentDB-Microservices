@@ -1,7 +1,7 @@
 package com.mohammad.masternode.schema;
 
 import com.mohammad.masternode.index.btree.BTree;
-import com.mohammad.masternode.schema.build.SchemaCreator;
+import com.mohammad.masternode.schema.create.SchemaCreator;
 
 import static com.mohammad.masternode.utils.JSON.getJsonObject;
 import static com.mohammad.masternode.utils.JSON.isValidJson;

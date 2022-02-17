@@ -2,7 +2,7 @@ package com.mohammad.replicanode.schema;
 
 
 import com.mohammad.replicanode.index.btree.BTree;
-import com.mohammad.replicanode.schema.build.SchemaCreator;
+import com.mohammad.replicanode.schema.create.SchemaCreator;
 
 import static com.mohammad.replicanode.utils.JSON.getJsonObject;
 
@@ -48,7 +48,7 @@ public class Document implements SchemaOperation {
 
     @Override
     public String toString() {
-        return documentSchema.toString();
+        return "["+documentSchema.toString()+"]";
     }
 }
 

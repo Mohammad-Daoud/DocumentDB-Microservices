@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import static com.mohammad.replicanode.io.DirectoryLoader.getMasterDir;
-
 
 @Service
 public class UserService {

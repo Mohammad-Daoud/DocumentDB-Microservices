@@ -15,28 +15,28 @@ import java.util.Date;
 public class ExceptionFactory extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<Object> handAllExceptions(Exception ex, WebRequest request) throws Exception {
+    public final ResponseEntity<Object> handAllExceptions(Exception ex, WebRequest request)  {
           ExceptionResponse exception =
-                  new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+                  new ExceptionResponse(new Date(), ex.toString(), request.getDescription(true));
        return new ResponseEntity(exception, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(NotFoundException.class)
-    public final ResponseEntity<Object> handleNotFound(Exception ex, WebRequest request) throws Exception {
+    public final ResponseEntity<Object> handleNotFound(Exception ex, WebRequest request)  {
         ExceptionResponse NotFoundException =
                 new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity(NotFoundException, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(InvalidJSONException.class)
-    public final ResponseEntity<Object> handleInvalidJson(Exception ex, WebRequest request) throws Exception {
+    public final ResponseEntity<Object> handleInvalidJson(Exception ex, WebRequest request)  {
         ExceptionResponse exception =
                 new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity(exception, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(UserConflictException.class)
-    public final ResponseEntity<Object> handleUserConflict(Exception ex, WebRequest request) throws Exception {
+    public final ResponseEntity<Object> handleUserConflict(Exception ex, WebRequest request)  {
         ExceptionResponse exception =
                 new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity(exception, HttpStatus.CONFLICT);

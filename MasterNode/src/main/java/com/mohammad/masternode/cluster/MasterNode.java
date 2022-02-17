@@ -1,26 +1,37 @@
 package com.mohammad.masternode.cluster;
 
-import org.springframework.stereotype.Component;
+import org.springframework.scheduling.annotation.Async;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
-import static com.mohammad.masternode.utils.ThreadUtils.threadCounter;
-
-@Component
 public class MasterNode implements Subject {
-    private final static List<Observer> REPLICA_GROUP = new ArrayList<>();
+    private final static Set<Observer> REPLICA_GROUP = Collections
+            .newSetFromMap(new ConcurrentHashMap<>());
 
-    public MasterNode() {
+    private static volatile MasterNode controller;
+
+    private MasterNode() {
+    }
+
+    public static MasterNode getInstance() {
+        synchronized (MasterNode.class) {
+            if (controller == null)
+                controller = new MasterNode();
+        }
+        return controller;
     }
 
     @Override
     public void addReplica(Observer replica) {
+        if (replica == null) return;
         REPLICA_GROUP.add(replica);
     }
 
     @Override
     public void deleteReplica(Observer replica) {
+        if (replica == null) return;
         REPLICA_GROUP.remove(replica);
     }
 
@@ -29,14 +40,15 @@ public class MasterNode implements Subject {
         REPLICA_GROUP.forEach(Observer::update);
     }
 
-    public int getReplicaGroupSize(){
+    public int getReplicaGroupSize() {
         return getReplicaGroup().size();
     }
-    private static List<Observer> getReplicaGroup() {
+
+    private static Set<Observer> getReplicaGroup() {
         return REPLICA_GROUP;
     }
 
-    public  List<Observer> getReplica() {
+    public Set<Observer> getReplica() {
         return REPLICA_GROUP;
     }
 }

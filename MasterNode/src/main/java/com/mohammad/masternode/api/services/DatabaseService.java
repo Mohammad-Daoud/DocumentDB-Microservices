@@ -21,20 +21,20 @@ public class DatabaseService {
     private static final List<Database> DATABASE_GROUP = new ArrayList<>();
 
 
-    @Autowired
-    private MasterNode controller;
 
-    public synchronized void addDatabase(Database database) {
+
+    public synchronized Database addDatabase(Database database) {
         Database newDatabase = new Database(database.getDatabaseName());
         DATABASE_GROUP.add(newDatabase);
         DirectoryCreator.getInstance().createDirectory(database.getDatabaseName());
-        controller.notifyAllReplicas();
+        MasterNode.getInstance().notifyAllReplicas();
+        return newDatabase;
     }
 
     public synchronized void deleteDatabase(String databaseName) {
         DATABASE_GROUP.removeIf(database -> database.getDatabaseName().equals(databaseName));
         DirectoryRemover.getInstance().deleteDir(databaseName);
-        controller.notifyAllReplicas();
+        MasterNode.getInstance().notifyAllReplicas();
 
     }
 
