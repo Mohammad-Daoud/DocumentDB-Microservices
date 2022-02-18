@@ -5,7 +5,7 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
 public class AppLogger {
-    private static  Logger LOGGER ;
+    private final Logger LOGGER ;
 
     private AppLogger(){
         throw new AssertionError();
@@ -18,6 +18,9 @@ public class AppLogger {
         return new AppLogger(logName);
     }
 
+    public void log(String message){
+        LOGGER.log(Level.SEVERE,message);
+    }
 
     public void logError (Exception e){
         LOGGER.log(Level.SEVERE,e.getMessage());

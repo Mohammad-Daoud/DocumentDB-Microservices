@@ -28,6 +28,7 @@ public class ShellExecutor extends Thread {
             builder.redirectErrorStream(true);
             Process process = builder.start();
             process.waitFor();
+            LOGGER.log(command+" command run successfully");
 
         } catch (IOException | InterruptedException e) {
             LOGGER.logError(e);
