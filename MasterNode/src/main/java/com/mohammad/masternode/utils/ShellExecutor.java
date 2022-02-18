@@ -26,11 +26,10 @@ public class ShellExecutor extends Thread {
         try {
             ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", command);
             builder.redirectErrorStream(true);
-            Process process = builder.start();
-            process.waitFor();
+            builder.start();
             LOGGER.log(command+" command run successfully");
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             LOGGER.logError(e);
         }
     }

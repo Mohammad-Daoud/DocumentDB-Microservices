@@ -63,7 +63,7 @@ public class DocumentService {
                 .get(documentName)
                 .add(JSON.toJson(json), realIndex);
 
-        DirectoryCreator.getInstance().writeFile(
+        DirectoryCreator.getInstance().overrideWriteFile(
                 databaseName
                         + "/"
                         + collectionName
@@ -81,7 +81,14 @@ public class DocumentService {
                                      Map<String, Object> json) {
 
         getDatabase(databaseName).get(collectionName).get(documentName).add(JSON.toJson(json));
-        DirectoryCreator.getInstance().writeFile(databaseName + "/" + collectionName + "/" + documentName + "/" + getObjectID(), JSON.toJson(json));
+        DirectoryCreator.getInstance().overrideWriteFile(
+                databaseName
+                        + "/"
+                        + collectionName
+                        + "/"
+                        + documentName
+                        + "/"
+                        + getObjectID(), JSON.toJson(json));
 
         MasterNode.getInstance().notifyAllReplicas();
     }

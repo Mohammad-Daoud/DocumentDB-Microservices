@@ -19,7 +19,7 @@ public class AppLogger {
     }
 
     public void log(String message){
-        LOGGER.log(Level.SEVERE,message);
+        LOGGER.log(Level.INFO,message);
     }
 
     public void logError (Exception e){

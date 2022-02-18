@@ -8,23 +8,24 @@ public class Replica implements Observer {
     private static final AppLogger LOGGER = AppLogger.create("Replica logger: ");
     private PortGenerator GENERATOR = PortGenerator.getInstance();
     private final String REPLICA_FILE = "C:/Users/mdss4/Documents/Atypon/DocumentDB/ReplicaNode/target/replica-node-0.0.1-SNAPSHOT.jar";
+    private String runReplicaCommand = "java -jar " + REPLICA_FILE + " --server.port=" + GENERATOR.generateNewPort();
     private final int PORT;
 
 
     private Replica() {
-        String runReplicaCommand = "java -jar " + REPLICA_FILE + " --server.port=" + GENERATOR.generateNewPort();
         this.PORT = GENERATOR.getPort();
-        ShellExecutor.create(runReplicaCommand).start();
-        LOGGER.log("replica created with port"+ PORT);
+        ShellExecutor executor = ShellExecutor.create(runReplicaCommand);
+        executor.start();
+        LOGGER.log("replica created with port "+ PORT);
     }
 
-    public static Replica create() {
+    public static Replica create(){
         return new Replica();
     }
 
     @Override
     public void update() {
-        MasterNode.getInstance().addReplica(Replica.create());
+        MasterNode.getInstance().addReplica(new Replica());
         LOGGER.log("update master is done successfully !");
     }
 
