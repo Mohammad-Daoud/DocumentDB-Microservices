@@ -50,11 +50,8 @@ public class MasterNode implements Subject {
         return getReplicaGroup().size();
     }
 
-    private static Set<Observer> getReplicaGroup() {
+    public Set<Observer> getReplicaGroup() {
         return REPLICA_GROUP;
     }
 
-    public Set<Observer> getReplica() {
-        return REPLICA_GROUP;
-    }
 }

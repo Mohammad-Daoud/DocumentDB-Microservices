@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -29,6 +28,6 @@ public class ChangeChecker extends TimerTask {
     @Autowired
     public void cacheCleaner(){
         Timer timer = new Timer();
-        timer.schedule(new ChangeChecker(),30000,100000);// the check for changes will be every 13 second
+        timer.schedule(new ChangeChecker(),10000,1000);
     }
 }

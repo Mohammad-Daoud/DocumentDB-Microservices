@@ -13,7 +13,7 @@ public class StopReplica {
 
     @PreDestroy
     public void shutdownAllReplicas() {
-        Set<Observer> replicas = MasterNode.getInstance().getReplica();
+        Set<Observer> replicas = MasterNode.getInstance().getReplicaGroup();
         MasterNode.getInstance().clearMasterNode(replicas);
     }
 }
