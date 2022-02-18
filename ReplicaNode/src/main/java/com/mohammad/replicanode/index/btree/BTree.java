@@ -124,15 +124,17 @@ public class BTree<Key extends Comparable<Key>, Value> {
         Entry[] children = rootNode.children;
 
         if (height == 0) {
-            for (int j = 0; j < rootNode.childrenNum; j++)
-                if (rootNode.childrenNum - j == 1)
-                    resultString.append(children[j].value + "\n ");
+            for (int i = 0; i < rootNode.childrenNum; i++)
+                if (rootNode.childrenNum - i == 1)
+                    resultString.append(children[i].value + "\n ");
                 else
-                    resultString.append( children[j].value + ",\n ");
-        } else {
-            for (int j = 0; j < rootNode.childrenNum; j++) {
-                if (j > 0) resultString.append(  "(" + children[j].key + ")\n");
-                resultString.append(toString(children[j].next, height - 1 ));
+                    resultString.append( children[i].value + ",\n ");
+        }else {
+            for (int i = 0; i < rootNode.childrenNum; i++) {
+                if (rootNode.childrenNum - i == 1)
+                    resultString.append(toString(children[i].next, height - 1));
+                else
+                    resultString.append(toString(children[i].next, height - 1)+",");
             }
         }
         return resultString.toString();
