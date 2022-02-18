@@ -26,7 +26,7 @@ public class DatabaseController {
 
     @PostMapping("/master/add-database")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public synchronized ResponseEntity<Object> addDatabase(@RequestBody Database database) {
+    public ResponseEntity<Object> addDatabase(@RequestBody Database database) {
         Database addedDataBase = service.addDatabase(database);
         return status.getResponseStatus(addedDataBase.getDatabaseName(),"/{name}");
     }
@@ -34,7 +34,7 @@ public class DatabaseController {
     @DeleteMapping(path = "/master/delete/{databaseName}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void deleteDatabase(@PathVariable String databaseName) {
-        service.deleteDatabase(databaseName);
+             service.deleteDatabase(databaseName);
     }
 
 

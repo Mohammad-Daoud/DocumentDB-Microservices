@@ -36,6 +36,7 @@ public class DatabaseService {
         DirectoryRemover.getInstance().deleteDir(databaseName);
         MasterNode.getInstance().notifyAllReplicas();
 
+
     }
 
     public static Database getDatabase(String databaseName) {

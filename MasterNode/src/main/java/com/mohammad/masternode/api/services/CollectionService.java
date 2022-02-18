@@ -15,7 +15,7 @@ import static com.mohammad.masternode.api.services.DatabaseService.getDatabase;
 public class CollectionService {
 
 
-    public synchronized void addCollection(String databaseName, Collection collection) {
+    public synchronized Collection addCollection(String databaseName, Collection collection) {
         getDatabase(databaseName).add(collection.getCollectionName());
         DirectoryCreator
                 .getInstance()
@@ -24,6 +24,7 @@ public class CollectionService {
                 + collection.getCollectionName());
 
         MasterNode.getInstance().notifyAllReplicas();
+        return collection;
     }
 
     public synchronized void deleteCollection(String databaseName, String collectionName) {

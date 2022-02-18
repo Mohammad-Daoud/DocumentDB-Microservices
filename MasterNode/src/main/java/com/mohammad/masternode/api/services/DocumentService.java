@@ -20,9 +20,9 @@ import static com.mohammad.masternode.schema.create.SchemaCreator.getObjectID;
 public class DocumentService {
 
 
-    public synchronized void addDocument(String databaseName,
-                                         String collectionName,
-                                         Document document) {
+    public synchronized Document addDocument(String databaseName,
+                                             String collectionName,
+                                             Document document) {
         getDatabase(databaseName)
                 .get(collectionName)
                 .getDocumentGroup()
@@ -35,6 +35,7 @@ public class DocumentService {
                         + "/"
                         + document.getDocumentName());
         MasterNode.getInstance().notifyAllReplicas();
+        return document;
     }
 
     public synchronized void deleteDocument(String databaseName,

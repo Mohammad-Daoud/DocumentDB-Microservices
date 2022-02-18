@@ -43,7 +43,7 @@ public class UserService {
     }
 
 
-    public synchronized void addUser(String username,
+    public synchronized User addUser(String username,
                                      String password, Role role) {
         if (isUserExist(username))
             throw new UserConflictException("the user exist");
@@ -55,6 +55,7 @@ public class UserService {
                 .build());
 
         DirectoryCreator.getInstance().overrideWriteFile(USER_FILE.getPath(), USER_GROUP.toString());
+        return getUser(username);
     }
 
 
@@ -91,32 +92,35 @@ public class UserService {
         return isFound;
     }
 
-    public synchronized void changeUserPassword(String username, String newPassword) {
+    public synchronized User changeUserPassword(String username, String newPassword) {
         List<User> tempUsersGroup = getAllUser();
         if (isUserExist(username)) {
             getUser(username).setPassword(newPassword);
             DirectoryCreator.getInstance().overrideWriteFile(USER_FILE.getAbsolutePath(), JSON.toJson(tempUsersGroup));
+            return getUser(username);
         } else {
             throw new NotFoundException("USER NOT FOUND !");
         }
-
     }
 
-    public synchronized void changeUserRole(String username, Role role) {
+    public synchronized User changeUserRole(String username, Role role) {
         List<User> tempUsersGroup = getAllUser();
         if (isUserExist(username)) {
             getUser(username).setRole(role);
             DirectoryCreator.getInstance().overrideWriteFile(USER_FILE.getAbsolutePath(), JSON.toJson(tempUsersGroup));
+            return getUser(username);
         } else {
             throw new NotFoundException("USER NOT FOUND !");
         }
+
     }
 
-    public synchronized void changeUserUsername(String oldUsername, String newUsername) {
+    public synchronized User changeUserUsername(String oldUsername, String newUsername) {
         List<User> tempUsersGroup = getAllUser();
         if (isUserExist(oldUsername)) {
             getUser(oldUsername).setUsername(newUsername);
             DirectoryCreator.getInstance().overrideWriteFile(USER_FILE.getAbsolutePath(), JSON.toJson(tempUsersGroup));
+            return getUser(newUsername);
         } else {
             throw new NotFoundException("USER NOT FOUND !");
         }
