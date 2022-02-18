@@ -1,6 +1,8 @@
 package com.mohammad.masternode.utils;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 
 public class ShellExecutor extends Thread {
@@ -26,6 +28,7 @@ public class ShellExecutor extends Thread {
             builder.redirectErrorStream(true);
             Process process = builder.start();
             process.waitFor();
+
         } catch (IOException | InterruptedException e) {
             LOGGER.logError(e);
         }

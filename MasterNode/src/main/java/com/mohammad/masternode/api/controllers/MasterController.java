@@ -23,7 +23,7 @@ public class MasterController {
 
     @GetMapping("/master/get-replicas")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public Set<Observer> getReplicaGroup(){
+    public List<Observer> getReplicaGroup(){
         return controllerService.getReplicaGroup();
     }
 }
