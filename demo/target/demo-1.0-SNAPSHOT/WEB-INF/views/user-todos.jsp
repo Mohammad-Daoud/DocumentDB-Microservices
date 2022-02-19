@@ -12,10 +12,11 @@
     <title>${username} Todo</title>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <link rel="icon" href="https://www.atypon.com/wp-content/themes/atypon-2018/assets/favicon/favicon.ico">
+
 </head>
-<body style="alignment: center">
+<body >
 <div>
-    <h1 style="text-align: center">Welcome ${username}</h1>
+    <h1>Welcome ${username}</h1>
 
     <table border="1">
         <tr>
@@ -28,8 +29,16 @@
         <tr>
             <td>${show.id}</td>
             <td>${show.desc}</td>
-            <td>${show.status}</td>
-            <td><a href="delete?id=${show.id}" style="text-decoration-line: none"><button>Delete</button></a></td>
+        <c:choose>
+            <c:when test="${show.status=='true'}">
+                <td><p style="color: green">DONE </p></td>
+            </c:when>
+            <c:otherwise>
+                <td><a href="/set-done-status?id=${show.id}" style="text-decoration-line: none">
+                    <button style="color: red"> Still Not Done </button></a></td>
+            </c:otherwise>
+        </c:choose>
+        <td><a href="delete?id=${show.id}" style="text-decoration-line: none"><button style="color: red">Delete</button></a></td>
 
         </tr>
         </c:forEach>

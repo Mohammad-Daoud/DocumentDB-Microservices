@@ -47,4 +47,10 @@ public class TodoController {
         return "redirect:user-todos";
     }
 
+    @RequestMapping(value = "/set-done-status", method = RequestMethod.GET)
+    public String setDoneStatus(ModelMap model, @RequestParam int id) {
+        String username = String.valueOf(model.get("username"));
+        service.setDoneStatus(username, id);
+        return "redirect:user-todos";
+    }
 }

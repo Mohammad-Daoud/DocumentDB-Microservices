@@ -7,12 +7,12 @@ import com.mohammad.masternode.io.DirectoryRemover;
 import com.mohammad.masternode.schema.Document;
 import com.mohammad.masternode.schema.create.SchemaCreator;
 import com.mohammad.masternode.utils.JSON;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 import static com.mohammad.masternode.api.services.DatabaseService.getDatabase;
+import static com.mohammad.masternode.io.DirectoryCreator.getMasterDir;
 import static com.mohammad.masternode.schema.create.SchemaCreator.getObjectID;
 
 
@@ -64,7 +64,9 @@ public class DocumentService {
                 .add(JSON.toJson(json), realIndex);
 
         DirectoryCreator.getInstance().writeFile(
-                databaseName
+                getMasterDir()
+                        + "/"
+                        + databaseName
                         + "/"
                         + collectionName
                         + "/"
@@ -82,7 +84,9 @@ public class DocumentService {
 
         getDatabase(databaseName).get(collectionName).get(documentName).add(JSON.toJson(json));
         DirectoryCreator.getInstance().writeFile(
-                databaseName
+                getMasterDir()
+                        + "/"
+                        + databaseName
                         + "/"
                         + collectionName
                         + "/"

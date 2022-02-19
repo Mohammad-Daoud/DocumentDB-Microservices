@@ -8,14 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add todo</title>
+    <title>Add TODO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://www.atypon.com/wp-content/themes/atypon-2018/assets/favicon/favicon.ico">
 </head>
-<body style="alignment: center">
+<body>
 <h3>Add a TODO</h3>
 
-<form method="post" >
-    <input name="desc" type="text"/>
-    <input  type="submit" value="add TODO"/>
+<form method="post">
+    <input name="desc" type="text" size="200" placeholder="TODO Description . . ."/>
+    <input type="submit" value="add TODO"/>
 
 </form>
 </body>

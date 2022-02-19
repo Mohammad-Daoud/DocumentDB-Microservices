@@ -1,13 +1,11 @@
 package com.mohammad.demo.services;
 
+import com.mohammad.demo.exception.NotFoundException;
 import com.mohammad.demo.handler.ResponseHandler;
 import com.mohammad.demo.model.todos.Todo;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class TodoService {
@@ -41,6 +39,33 @@ public class TodoService {
         addedTodo.put("id", addID(username, 1));
         addedTodo.put("desc", description);
         addedTodo.put("status", false);
+        return addedTodo;
+    }
+
+
+
+
+
+    public void setDoneStatus(String username, int id) {
+        Todo tempTodo = getTodo(username,id);
+        if (tempTodo == null)
+            throw new NotFoundException("user not found");
+        Map<String,Object> editedTodo = todoCreator(tempTodo.getDesc(),tempTodo.getId());
+        addTodo(username,editedTodo);
+    }
+
+    private Todo getTodo(String username, int id) {
+        return retrieveUserTodos(username)
+                .stream()
+                .filter(todoID -> todoID.getId() == id)
+                .findFirst().orElse(null);
+    }
+
+    private Map<String, Object> todoCreator(String description,int id) {
+        Map<String, Object> addedTodo = new Hashtable<>();
+        addedTodo.put("id", id);
+        addedTodo.put("desc", description);
+        addedTodo.put("status", true);
         return addedTodo;
     }
 }

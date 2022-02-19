@@ -28,10 +28,8 @@ public class DirectoryCreator {
         file.mkdir();
     }
 
-    public synchronized void overrideWriteFile(String dirPath, String content) {
-
+    public synchronized void writeFile(String dirPath, String content) {
         File file = new File(dirPath);
-
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             writer.write(content);
         } catch (IOException e) {
@@ -39,15 +37,6 @@ public class DirectoryCreator {
         }
     }
 
-    public synchronized void writeFile(String dirPath, String content) {
-        File file = new File(MASTER_DIR+"/"+dirPath);
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
-            writer.write(content);
-        } catch (IOException e) {
-            LOGGER.logError(e);
-        }
-    }
 
     public static File getMasterDir() {
         return MASTER_DIR;
