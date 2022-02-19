@@ -6,34 +6,37 @@ import com.mohammad.masternode.utils.ShellExecutor;
 
 public class Replica implements Observer {
     private static final AppLogger LOGGER = AppLogger.create("Replica logger: ");
-    private PortGenerator GENERATOR = PortGenerator.getInstance();
+    private final PortGenerator GENERATOR = PortGenerator.getInstance();
     private final String REPLICA_FILE = "C:/Users/mdss4/Documents/Atypon/DocumentDB/ReplicaNode/target/replica-node-0.0.1-SNAPSHOT.jar";
-    private String runReplicaCommand = "java -jar " + REPLICA_FILE + " --server.port=" + GENERATOR.generateNewPort();
+    private final String REPLICA_RUN_COMMAND = "java -jar " + REPLICA_FILE + " --server.port=" + GENERATOR.generateNewPort();
+    private final ReplicaState STATE = ReplicaState.getInstance();
     private final int PORT;
 
 
     private Replica() {
         this.PORT = GENERATOR.getPort();
-        ShellExecutor executor = ShellExecutor.create(runReplicaCommand);
+        ShellExecutor executor = ShellExecutor.create(REPLICA_RUN_COMMAND);
         executor.start();
-        LOGGER.log("replica created with port "+ PORT);
+        LOGGER.log("replica created with port " + PORT);
+
+        MasterNode.getInstance().addReplica(this);
     }
 
-    public static Replica create(){
+    public static Replica create() {
         return new Replica();
     }
 
     @Override
     public void update() {
-        MasterNode.getInstance().addReplica(new Replica());
-        LOGGER.log("update master is done successfully !");
+        STATE.increaseState();
+        LOGGER.log("update replica is done successfully !");
     }
 
     @Override
     public void killReplica() {
         String killCommand = "npx kill-port " + PORT;
         ShellExecutor.create(killCommand).start();
-        LOGGER.log("killed replica "+PORT);
+        LOGGER.log("killed replica " + PORT);
     }
 
 

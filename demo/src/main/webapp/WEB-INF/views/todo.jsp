@@ -10,8 +10,8 @@
 <head>
     <title>Add todo</title>
 </head>
-<body>
-<h1>Add a TODO</h1>
+<body style="alignment: center">
+<h3>Add a TODO</h3>
 
 <form method="post" >
     <input name="desc" type="text"/>

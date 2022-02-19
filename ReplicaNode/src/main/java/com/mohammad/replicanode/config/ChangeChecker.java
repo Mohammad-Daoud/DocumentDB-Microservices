@@ -14,20 +14,19 @@ import java.util.TimerTask;
 public class ChangeChecker extends TimerTask {
 
     public void cacheCleanerHelper() {
-       Replica replicaInstance = Replica.create();
-        if (replicaInstance.isThereMasterChanges())
+        Boolean isChanged =  Replica.create().isThereMasterChanges();
+        if (isChanged)
             CacheUtils.clearCache();
     }
 
     @Override
     public void run() {
-        System.out.println("Change checker has been called");
         cacheCleanerHelper();
     }
 
     @Autowired
     public void cacheCleaner(){
         Timer timer = new Timer();
-        timer.schedule(new ChangeChecker(),10000,1000);
+        timer.schedule(new ChangeChecker(),15000,900);
     }
 }

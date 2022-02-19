@@ -8,14 +8,12 @@ import org.springframework.stereotype.Service;
 public class LoginService {
 
     private final ResponseHandler<User> USER_RESPONSE = new ResponseHandler<>();
-    private static User currentUser;
-    public boolean isValidUser(String username, String password) {
-         currentUser = USER_RESPONSE.getResponse("read/get-json/todoDB/users/users-details?index=" + username,
-                User.class);
-        return currentUser.getPassword().equals(password);
-    }
 
-    public static String getUserTodo(){
-        return currentUser.getUserTodo();
+    public boolean isValidUser(String username, String password) {
+        User currentUser = USER_RESPONSE.getResponse("read/get-json/todoDB/users/users-details?index=" + username,
+                User.class);
+         if (currentUser == null)
+             return false;
+        return currentUser.getPassword().equals(password);
     }
 }

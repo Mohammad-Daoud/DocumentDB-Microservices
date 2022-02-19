@@ -15,8 +15,8 @@ public class StopReplica {
 
     @PreDestroy
     public void shutdownAllReplicas() {
-        Set<Observer> replicas = MasterNode.getInstance().getReplicaGroup();
-        MasterNode.getInstance().clearMasterNode(replicas);
         LOGGER.log("replicas have been stopped successfully !");
+        Set<Observer> replicas = MasterNode.getInstance().getReplicaGroup();
+        MasterNode.getInstance().clearAllReplicas(replicas);
     }
 }

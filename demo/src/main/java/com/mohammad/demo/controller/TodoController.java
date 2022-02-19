@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 
 
@@ -23,9 +21,9 @@ public class TodoController {
 
     @RequestMapping(value = "/user-todos", method = RequestMethod.GET)
     public String viewUserTodos(ModelMap model) {
-        String username = (String) model.get("username");
+        String username = String.valueOf(model.get("username"));
         model.addAttribute("userTodos", service.retrieveUserTodos(username));
-        return "user-todos";
+        return "/user-todos";
     }
 
     @RequestMapping(value = "/add-todo", method = RequestMethod.GET)
@@ -36,18 +34,17 @@ public class TodoController {
     @RequestMapping(value = "/add-todo", method = RequestMethod.POST)
     public String addTodo(ModelMap model,
                           @RequestParam String desc) {
-
-        String username = (String) model.get("username");
-
-        Map<String, Object> addedTodo = new HashMap<>();
-
-        addedTodo.put("id", service.retrieveUserTodos(username).size() + 1);
-        addedTodo.put("desc", desc);
-        addedTodo.put("status", false);
-
+        String username = String.valueOf(model.get("username"));
+        Map<String,Object> addedTodo = service.todoCreator(username,desc);
         service.addTodo(username, addedTodo);
         return "redirect:user-todos";
     }
 
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String deleteTodo(ModelMap model, @RequestParam int id) {
+        String username = String.valueOf(model.get("username"));
+        service.deleteTodo(username, id);
+        return "redirect:user-todos";
+    }
 
 }

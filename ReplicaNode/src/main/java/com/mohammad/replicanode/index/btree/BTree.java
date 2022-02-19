@@ -1,7 +1,7 @@
 package com.mohammad.replicanode.index.btree;
 
 public class BTree<Key extends Comparable<Key>, Value> {
-    private static final int MAX_CHILDREN_NUM = 5;
+    private static final int MAX_NODE_CHILDREN_NUM = 4; // must be even and grater than 2
     private Node root;
     private int height;
     private int groupNum;
@@ -88,16 +88,16 @@ public class BTree<Key extends Comparable<Key>, Value> {
             nodeToInsert.children[i] = nodeToInsert.children[i - 1];
         nodeToInsert.children[j] = tempEntry;
         nodeToInsert.childrenNum++;
-        if (nodeToInsert.childrenNum < MAX_CHILDREN_NUM) return null;
+        if (nodeToInsert.childrenNum < MAX_NODE_CHILDREN_NUM) return null;
         else return split(nodeToInsert);
 
     }
 
     private Node split(Node nodeToSplit) {
-        Node resultNode = new Node(MAX_CHILDREN_NUM / 2);
-        nodeToSplit.childrenNum = MAX_CHILDREN_NUM / 2;
-        for (int j = 0; j < MAX_CHILDREN_NUM / 2; j++)
-            resultNode.children[j] = nodeToSplit.children[MAX_CHILDREN_NUM / 2 + j];
+        Node resultNode = new Node(MAX_NODE_CHILDREN_NUM / 2);
+        nodeToSplit.childrenNum = MAX_NODE_CHILDREN_NUM / 2;
+        for (int j = 0; j < MAX_NODE_CHILDREN_NUM / 2; j++)
+            resultNode.children[j] = nodeToSplit.children[MAX_NODE_CHILDREN_NUM / 2 + j];
         return resultNode;
     }
 
@@ -109,8 +109,8 @@ public class BTree<Key extends Comparable<Key>, Value> {
         return firstKey.compareTo(secondKey) == 0;
     }
 
-    public static int getMaxChildrenNum() {
-        return MAX_CHILDREN_NUM;
+    public static int getMaxNodeChildrenNum() {
+        return MAX_NODE_CHILDREN_NUM;
     }
 
 

@@ -10,9 +10,9 @@ public class LRUCache<Key, Value> {
     private final int MAX_CAPACITY;
     private AtomicInteger curSize = new AtomicInteger();
     private ConcurrentHashMap<Key, Node> map;
-    private Node head;
-    private Node tail;
-    private ReentrantReadWriteLock readWriteLock;
+    private static Node head;
+    private static Node tail;
+    private static ReentrantReadWriteLock readWriteLock;
 
 
 
@@ -105,10 +105,6 @@ public class LRUCache<Key, Value> {
         }
     }
 
-    public void clearAll(){
-        Collection<Node> node = map.values();
-        node.forEach(this::removeNode);
-    }
 }
 
 

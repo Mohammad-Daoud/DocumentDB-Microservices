@@ -1,7 +1,10 @@
 package com.mohammad.demo.handler;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.mohammad.demo.model.todos.Todo;
 
 
 import java.util.List;
@@ -17,19 +20,23 @@ public class ResponseHandler <T>  {
     public T getResponse(String responseUrl, Class<T> mappingClass){
         REQUEST.setBasicAuthCredentials(USERNAME,PASSWORD);
         Object tempObject = REQUEST.doGetRequest(responseUrl);
-
         return MAPPER.convertValue(tempObject, mappingClass);
     }
 
 
-    public List<T> getResponse(String responseUrl){
+    public List<Todo> getResponse(String responseUrl){
         REQUEST.setBasicAuthCredentials(USERNAME,PASSWORD);
         Object tempObject = REQUEST.doGetRequest(responseUrl);
-        return MAPPER.convertValue(tempObject, new TypeReference<List<T>>() {});
+        return MAPPER.convertValue(tempObject, new TypeReference<List<Todo>>() {});
     }
 
     public void postResponse(Map<String,Object> jsonMap,String responseUrl){
         REQUEST.setBasicAuthCredentials(USERNAME,PASSWORD);
         REQUEST.doPostRequest(jsonMap,responseUrl);
+    }
+
+    public void deleteResponse(String responseUrl){
+        REQUEST.setBasicAuthCredentials(USERNAME,PASSWORD);
+        REQUEST.doDeleteRequest(responseUrl);
     }
 }

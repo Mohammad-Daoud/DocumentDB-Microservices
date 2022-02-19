@@ -8,8 +8,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class MasterNode implements Subject {
     private final static Set<Observer> REPLICA_GROUP = Collections
             .newSetFromMap(new ConcurrentHashMap<>());
-
     private static volatile MasterNode controller;
+
 
     private MasterNode() {
     }
@@ -41,14 +41,12 @@ public class MasterNode implements Subject {
         REPLICA_GROUP.forEach(Observer::update);
     }
 
-    public void clearMasterNode(Set<Observer> observerSet){
+
+    public void clearAllReplicas(Set<Observer> observerSet) {
         observerSet.forEach(Observer::killReplica);
         observerSet.clear();
+    }
 
-    }
-    public int getReplicaGroupSize() {
-        return getReplicaGroup().size();
-    }
 
     public Set<Observer> getReplicaGroup() {
         return REPLICA_GROUP;

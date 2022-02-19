@@ -17,7 +17,7 @@ public class MasterController {
     MasterService controllerService;
 
     @GetMapping("/master/is-change")
-    public boolean isThereChanges(){
+    public Boolean isThereChanges(){
         return MasterService.isThereChanges();
     }
 

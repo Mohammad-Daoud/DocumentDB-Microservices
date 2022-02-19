@@ -31,13 +31,8 @@ public class Todo {
         this.desc = desc;
     }
 
-
-
-    public String isStatus() {
-
-        if (status)
-            return "DONE";
-        else return "IN PROGRESS";
+    public boolean isStatus() {
+        return status;
     }
 
     public void setStatus(boolean status) {

@@ -10,13 +10,15 @@ public class AppLogger {
         throw new AssertionError();
     }
     private AppLogger(String logName){
-       this.LOGGER = Logger.getLogger(logName);
+       LOGGER = Logger.getLogger(logName);
     }
 
     public static AppLogger create(String logName){
         return new AppLogger(logName);
     }
-
+    public void log(String message){
+        LOGGER.log(Level.INFO,message);
+    }
     public  void logError (Exception e){
         LOGGER.log(Level.SEVERE,e.getMessage());
     }

@@ -3,7 +3,7 @@ package com.mohammad.replicanode.cluster;
 import org.springframework.web.client.RestTemplate;
 
 
-public class Replica extends Thread {
+public class Replica {
 
     private static final String URI = "http://localhost:8000/master/is-change";
 
@@ -15,13 +15,9 @@ public class Replica extends Thread {
     }
 
 
-    public boolean isThereMasterChanges() {
+    public Boolean isThereMasterChanges() {
         RestTemplate restTemplate = new RestTemplate();
         return Boolean.TRUE.equals(restTemplate.getForObject(URI, Boolean.class));
     }
 
-    @Override
-    public void run() {
-        isThereMasterChanges();
-    }
 }

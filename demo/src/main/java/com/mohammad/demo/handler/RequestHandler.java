@@ -30,4 +30,8 @@ public class RequestHandler{
         REST_REQUEST.postForEntity(BASE_URI + urlMethod,jsonMap,Object.class);
     }
 
+    public void doDeleteRequest(String urlMethod){
+        REST_REQUEST.delete(BASE_URI+urlMethod);
+    }
+
 }

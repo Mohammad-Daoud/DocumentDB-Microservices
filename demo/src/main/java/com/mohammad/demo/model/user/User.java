@@ -7,8 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties("_objectID")
 public class User {
 
-    @JsonProperty("name")
-    private String name;
+
     @JsonProperty("username")
     private String username;
     @JsonProperty("password")
@@ -16,13 +15,6 @@ public class User {
     @JsonProperty("userTodo")
     private String userTodo;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getUsername() {
         return username;
@@ -51,8 +43,7 @@ public class User {
     @Override
     public String toString() {
         return "{" +
-                "name:'" + name + '\'' +
-                ", username:'" + username + '\'' +
+                " username:'" + username + '\'' +
                 ", password:'" + password + '\'' +
                 ", userTodo:'" + userTodo + '\'' +
                 '}';

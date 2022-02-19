@@ -13,7 +13,7 @@ public class StartReplica {
     private final AppLogger LOGGER = AppLogger.create("StartReplica logger: ");
     @PostConstruct
     public void startReplica(){
-        MasterNode.getInstance().addReplica(Replica.create());
+        Replica.create();
         LOGGER.log("replica started !");
     }
 
