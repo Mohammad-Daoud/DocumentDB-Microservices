@@ -13,7 +13,7 @@ public class TodoService {
     private final ResponseHandler<Todo> TODO_RESPONSE = new ResponseHandler<>();
 
     public List<Todo> retrieveUserTodos(String username) {
-        return new ArrayList<>(TODO_RESPONSE.getResponse("read/get-doc/todoDB/users-todos?" + "name=" + username + "Todo"));
+        return TODO_RESPONSE.getResponse("read/get-doc/todoDB/users-todos?" + "name=" + username + "Todo");
     }
 
     public void addTodo(String username, Map<String, Object> jsonMap) {

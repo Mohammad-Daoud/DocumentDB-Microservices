@@ -38,7 +38,7 @@ public class MasterNode implements Subject {
 
     @Override
     public void notifyAllReplicas() {
-        REPLICA_GROUP.forEach(Observer::update);
+        REPLICA_GROUP.forEach(Observer::update);;
     }
 
 

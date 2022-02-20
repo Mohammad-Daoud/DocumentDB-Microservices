@@ -43,8 +43,9 @@
         </tr>
         </c:forEach>
     </table>
+    <br>
     <a href="/add-todo" style="text-decoration-line: none">
-        <button> Add</button>
+        <button style="size: 40px"> Add</button>
     </a>
 
 </div>

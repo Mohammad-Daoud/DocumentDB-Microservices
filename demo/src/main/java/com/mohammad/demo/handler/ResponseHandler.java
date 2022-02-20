@@ -1,11 +1,8 @@
 package com.mohammad.demo.handler;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import com.mohammad.demo.model.todos.Todo;
-
 
 import java.util.List;
 import java.util.Map;

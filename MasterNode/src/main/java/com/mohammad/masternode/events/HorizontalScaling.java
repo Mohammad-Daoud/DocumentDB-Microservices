@@ -1,7 +1,7 @@
 package com.mohammad.masternode.events;
 
 
-import com.mohammad.masternode.cluster.MasterNode;
+
 import com.mohammad.masternode.cluster.Replica;
 import com.mohammad.masternode.utils.AppLogger;
 import com.mohammad.masternode.utils.ThreadUtils;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.Timer;
 import java.util.TimerTask;
 
-@Component
+//@Component
 public class HorizontalScaling extends TimerTask {
 
     private final AppLogger LOGGER = AppLogger.create("HorizontalScaling logger: ");
@@ -23,7 +23,6 @@ public class HorizontalScaling extends TimerTask {
             maxThreadNumber += currentThreadNumber;
             Replica.create();
             LOGGER.log("Scaling Active 'added new replica");
-            LOGGER.log("Number of Replicas: "+ MasterNode.getInstance().getReplicaGroup());
         }
     }
 
@@ -35,6 +34,6 @@ public class HorizontalScaling extends TimerTask {
     @Autowired
     public void doScaling(){
         Timer timer = new Timer();
-        timer.schedule(new HorizontalScaling(),60000);
+        timer.schedule(new HorizontalScaling(),60000,60000);
     }
 }

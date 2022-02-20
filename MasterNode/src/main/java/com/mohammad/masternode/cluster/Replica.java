@@ -2,6 +2,7 @@ package com.mohammad.masternode.cluster;
 
 import com.mohammad.masternode.utils.AppLogger;
 import com.mohammad.masternode.utils.ShellExecutor;
+import org.springframework.web.client.RestTemplate;
 
 
 public class Replica implements Observer {
@@ -28,8 +29,8 @@ public class Replica implements Observer {
 
     @Override
     public void update() {
-        STATE.increaseState();
-        LOGGER.log("update replica is done successfully !");
+        String message = updateHelper(PORT);
+        LOGGER.log(message);
     }
 
     @Override
@@ -39,6 +40,11 @@ public class Replica implements Observer {
         LOGGER.log("killed replica " + PORT);
     }
 
+    private String updateHelper(int port){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:"+port+"/read/clear-cache/true";
+        return restTemplate.getForObject(url, String.class);
+    }
 
     public int getPORT() {
         return PORT;

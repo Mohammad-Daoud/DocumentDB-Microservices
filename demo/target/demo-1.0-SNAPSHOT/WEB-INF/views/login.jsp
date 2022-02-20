@@ -21,6 +21,6 @@
     <a href="/signup"> register? </a>
     <br>
     <p style="color: red">${errorMessage}</p>
-
+</form>
 </body>
 </html>
