@@ -1,8 +1,8 @@
 
 
-#DocumentDB
+##DocumentDB
 
- ##Description
+###Description
 
 - A microservices REST API using SpringBoot framework to build
 
@@ -10,7 +10,7 @@
 
   Also, a demo *Todo* web application.
 
- ##Installation
+###Installation
   - You should have ***Maven*** and ***JDK 11.***
   and run *mvn clean install* on each project 
   then, go to replica and write the directory that where the application is .
@@ -31,24 +31,24 @@
 ###Username and Password
 
 
-The admin username ***“root”*** with password ***“root”***
+- The admin username ***“root”*** with password ***“root”***
 
-I recommend changing the root password asap.
+  I recommend changing the root password asap.
 
 ###API Calls
 
-To know what operation we can do just go to:
+- To know what operation we can do just go to:
 
 ####For controller node (administrative tasks)
 
-<http://localhost:8000/master/index.html>
+- <http://localhost:8000/master/index.html>
 
 ####For replicas node (reading tasks)
 
-<http://localhost:9000/read/index.html>
+- <http://localhost:9000/read/index.html>
 
 ####Demo
-<http://localhost:8090/login>
+- <http://localhost:8090/login>
 
 ##Author
 
