@@ -2,59 +2,59 @@
 
 #DocumentDB
 
-#Description
+ ##Description
 
-A microservices REST API using SpringBoot framework to build
+- A microservices REST API using SpringBoot framework to build
 
-NoSql/DocumentDB in JSON format, with *BasicAuth* authentication.
+  NoSql/DocumentDB in JSON format, with *BasicAuth* authentication.
 
-Also, a demo *Todo* web application.
+  Also, a demo *Todo* web application.
 
-#Installation
-You should have ***Maven*** and ***JDK 11.***
-and run *mvn clean install* on each project 
-then, go to replica and write the directory that where the application is .
-Then, run each application:
+ ##Installation
+  - You should have ***Maven*** and ***JDK 11.***
+  and run *mvn clean install* on each project 
+  then, go to replica and write the directory that where the application is .
+  Then, run each application:
 
-*1. NamingServer* with port 8761
+    - *1. NamingServer* with port 8761
 
-*2. ApiGateway* with port 8080
+    - *2. ApiGateway* with port 8080
 
-*3. MasterNode* with port 8000
+    - *3. MasterNode* with port 8000
 
-*4. ReplicaNode* with ports [9000- unknown]
+    - *4. ReplicaNode* with ports [9000- unknown]
 
-*5. Todo app* with port 8090
+    - *5. Todo app* with port 8090
 
-#Configuration
+##Configuration
 
-##Username and Password
+###Username and Password
 
 
 The admin username ***“root”*** with password ***“root”***
 
 I recommend changing the root password asap.
 
-##API Calls
+###API Calls
 
 To know what operation we can do just go to:
 
-###For controller node (administrative tasks)
+####For controller node (administrative tasks)
 
 <http://localhost:8000/master/index.html>
 
-##For replicas node (reading tasks)
+####For replicas node (reading tasks)
 
 <http://localhost:9000/read/index.html>
 
-##Demo
+####Demo
 <http://localhost:8090/login>
 
-#Author
+##Author
 
 [Mohammad](https://www.linkedin.com/in/mohammad-daoudx/)[ ](https://www.linkedin.com/in/mohammad-daoudx/)[Daoud](https://www.linkedin.com/in/mohammad-daoudx/)
 
-#Acknowledgment
+##Acknowledgment
 
 My thanks and appreciation for Atypon co. Especially [Motasem](https://www.linkedin.com/in/maldiab/)[ ](https://www.linkedin.com/in/maldiab/)[Aldiab](https://www.linkedin.com/in/maldiab/)[ ](https://www.linkedin.com/in/maldiab/)and [Fahed](https://www.linkedin.com/in/fahed-jubair-52b84882/)
 
