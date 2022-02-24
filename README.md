@@ -7,15 +7,15 @@
   Also, a demo *Todo* web application.
 
 ##Installation
-  - You should have ***Maven*** and ***JDK 11.***
-  and run *mvn clean install* on each project 
+- You should have ***Maven*** and ***JDK 11.***
+  and run *mvn clean install* on each project
   then, go to replica and write the directory that where the application is .
   Then, run each application:
-    - *1. NamingServer* with port 8761
-    - *2. ApiGateway* with port 8080
-    - *3. MasterNode* with port 8000
-    - *4. ReplicaNode* with ports [9000- unknown]
-    - *5. Todo app* with port 8090
+  - *1. NamingServer* with port 8761
+  - *2. ApiGateway* with port 8080
+  - *3. MasterNode* with port 8000
+  - *4. ReplicaNode* with ports [9000- unknown]
+  - *5. Todo app* with port 8090
 
 ##Configuration
 ###Username and Password
@@ -38,7 +38,7 @@
 [Mohammad Daoud](https://www.linkedin.com/in/mohammad-daoudx/)
 
 ##Acknowledgment
-- My thanks and appreciation for Atypon co. Especially [Motasem Aldiab](https://www.linkedin.com/in/maldiab) and 
+- My thanks and appreciation for Atypon co. Especially [Motasem Aldiab](https://www.linkedin.com/in/maldiab) and
   [Fahed Jubair](https://www.linkedin.com/in/fahed-jubair-52b84882/)
-For support and teaching me all knowledge that helped me on my journey. May Allah
-bless you.
+  For support and teaching me all knowledge that helped me on my journey. May Allah
+  bless you.
