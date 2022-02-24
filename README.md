@@ -1,7 +1,6 @@
 
 
 #DocumentDB
-
 ##Description
 - A microservices REST API using SpringBoot framework to build
   NoSql/DocumentDB in JSON format, with *BasicAuth* authentication.
