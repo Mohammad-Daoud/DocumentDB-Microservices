@@ -56,7 +56,7 @@
 
 ##Acknowledgment
 
-- My thanks and appreciation for Atypon co. Especially [Motasem Aldiab](https://www.linkedin.com/in/maldiab and 
+- My thanks and appreciation for Atypon co. Especially [Motasem Aldiab](https://www.linkedin.com/in/maldiab) and 
   [Fahed Jubair](https://www.linkedin.com/in/fahed-jubair-52b84882/)
 
 For support and teaching me all knowledge that helped me on my journey. May Allah
