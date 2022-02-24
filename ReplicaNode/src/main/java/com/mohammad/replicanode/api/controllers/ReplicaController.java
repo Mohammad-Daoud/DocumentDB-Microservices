@@ -13,11 +13,11 @@ public class ReplicaController {
     @Autowired
     private ReplicaService service;
     @Autowired
-    private ServerProperties properties;
+    private ServerProperties replicaProperties;
 
     @GetMapping("/read/clear-cache/{isChange}")
     public String clearCacheForChange(@PathVariable Boolean isChange){
-        int port = properties.getPort();
+        int port = replicaProperties.getPort();
         service.cleanCacheForChange(isChange);
         return "Replica with port "+ port + " has updated successfully " ;
     }

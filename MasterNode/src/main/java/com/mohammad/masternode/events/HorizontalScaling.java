@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.Timer;
 import java.util.TimerTask;
 
-//@Component
+@Component
 public class HorizontalScaling extends TimerTask {
 
     private final AppLogger LOGGER = AppLogger.create("HorizontalScaling logger: ");
@@ -22,7 +22,7 @@ public class HorizontalScaling extends TimerTask {
         if (currentThreadNumber > maxThreadNumber) {
             maxThreadNumber += currentThreadNumber;
             Replica.create();
-            LOGGER.log("Scaling Active 'added new replica");
+            LOGGER.log("Scaling Active 'added new replica . . . ' ");
         }
     }
 

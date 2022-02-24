@@ -1,8 +1,6 @@
 package com.mohammad.masternode.utils;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 
 public class ShellExecutor extends Thread {
@@ -25,9 +23,8 @@ public class ShellExecutor extends Thread {
     private static void runShellCommand(String command) {
         try {
             ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", command);
-            builder.redirectErrorStream(true);
             builder.start();
-            LOGGER.log(command+" command run successfully");
+            LOGGER.log(command + " command run successfully");
 
         } catch (IOException e) {
             LOGGER.logError(e);

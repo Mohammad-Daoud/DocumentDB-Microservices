@@ -9,19 +9,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 public class MasterController {
     @Autowired
     MasterService controllerService;
 
-    @GetMapping("/master/is-change")
-    public Boolean isThereChanges(){
-        return MasterService.isThereChanges();
-    }
 
-    @GetMapping("/master/get-replicas")
+
+    @GetMapping("/master/get-all-replicas")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<Observer> getReplicaGroup(){
         return controllerService.getReplicaGroup();
