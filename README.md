@@ -52,13 +52,12 @@
 
 ##Author
 
-[Mohammad](https://www.linkedin.com/in/mohammad-daoudx/)[ ](https://www.linkedin.com/in/mohammad-daoudx/)[Daoud](https://www.linkedin.com/in/mohammad-daoudx/)
+[Mohammad Daoud](https://www.linkedin.com/in/mohammad-daoudx/)
 
 ##Acknowledgment
 
-My thanks and appreciation for Atypon co. Especially [Motasem](https://www.linkedin.com/in/maldiab/)[ ](https://www.linkedin.com/in/maldiab/)[Aldiab](https://www.linkedin.com/in/maldiab/)[ ](https://www.linkedin.com/in/maldiab/)and [Fahed](https://www.linkedin.com/in/fahed-jubair-52b84882/)
-
-[Jubair](https://www.linkedin.com/in/fahed-jubair-52b84882/).
+- My thanks and appreciation for Atypon co. Especially [Motasem Aldiab](https://www.linkedin.com/in/maldiab and 
+  [Fahed Jubair](https://www.linkedin.com/in/fahed-jubair-52b84882/)
 
 For support and teaching me all knowledge that helped me on my journey. May Allah
 
