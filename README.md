@@ -22,10 +22,10 @@
 - The admin username ***“root”*** with password ***“root”***
   I recommend changing the root password asap.
 
-### API Calls
+#### API Calls
 - To know what operation we can do just go to:
 
-#### For controller node (administrative tasks)
+##### For controller node (administrative tasks)
 - <http://localhost:8000/master/index.html>
 
 #### For replicas node (reading tasks)
