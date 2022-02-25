@@ -92,7 +92,7 @@ To know what operation we can do just go to:
 
 <http://localhost:8090/login>
 #### 
-**All the operation will be on API GATEWAY on port 8080**:
+**All the operation will be through API GATEWAY on port 8080**:
   - <http://localhost:8080/read/**>
   - <http://localhost:8080/master/**>
   
