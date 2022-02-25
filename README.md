@@ -80,20 +80,22 @@ I recommend changing the root password asap.
 
 To know what operation we can do just go to:
 
-##### For controller node (administrative tasks)
+##### To know the operation for controller node (administrative tasks)
 
 <http://localhost:8000/master/index.html>
 
-#### For replicas node (reading tasks)
+#### To know the operation for replicas node (reading tasks)
 
 <http://localhost:9000/read/index.html>
 
 #### Demo
 
 <http://localhost:8090/login>
-
+-
 ## Author
-
+- All the operation will be on API GATEWAY on port 8080:
+    - <http://localhost:8080/read/**>
+    - <http://localhost:8080/master/**>
 [Mohammad Daoud](https://www.linkedin.com/in/mohammad-daoudx/)
 
 ## Acknowledgment
