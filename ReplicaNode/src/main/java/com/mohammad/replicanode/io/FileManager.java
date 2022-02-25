@@ -11,12 +11,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DirectoryLoader {
+public class FileManager {
 
-    private static final File MASTER_DIR = new File("C:/Users/mdss4/Documents/Atypon/DocumentDB/MasterNode/storage/master-node");
+    private static  File masterDir ;
     private static final AppLogger LOGGER =  AppLogger.create("Directory loader logger") ;
 
-    private DirectoryLoader(){}
+    private FileManager(){}
 
     public static List<File> loadDirs(File parent, int level) {
         List<File> dirs = new ArrayList<File>();
@@ -64,6 +64,18 @@ public class DirectoryLoader {
     }
 
     public static File getMasterDir() {
-        return MASTER_DIR;
+        return masterDir;
+    }
+
+    public static File getUsersDir(){
+        return new File(getMasterDir().getAbsolutePath());
+    }
+
+    public static File getDatabaseDir(){
+        return new File(getMasterDir()+"/storage/master-node");
+    }
+
+    public static void setMaster(String masterDir) {
+        FileManager.masterDir = new File(masterDir);
     }
 }

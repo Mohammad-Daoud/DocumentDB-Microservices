@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mohammad.replicanode.io.DirectoryLoader.*;
+import static com.mohammad.replicanode.io.FileManager.*;
 import static com.mohammad.replicanode.utils.CacheUtils.getCacheObject;
 
 @Service
@@ -33,7 +33,7 @@ public class DatabaseService {
 
     private static List<Database> loadDatabases() {
         List<Database> databaseGroup = new ArrayList<>();
-        loadDirs(getMasterDir(), 0)
+        loadDirs(getDatabaseDir(), 0)
                 .forEach(dir -> databaseGroup.add(new Database(dir.getName())));
         int databaseSize = databaseGroup.size();
 
@@ -41,7 +41,7 @@ public class DatabaseService {
             int databaseFinalIterator = i;
             int collectionFinalIterator = i;
             // this lambda to load the collection to specified database
-            loadDirs(new File(getMasterDir()
+            loadDirs(new File(getDatabaseDir()
                     + "/" + databaseGroup.get(i).getDatabaseName()), 0)
                     .forEach(collectionFolder -> {
                         databaseGroup.get(databaseFinalIterator)
@@ -50,7 +50,7 @@ public class DatabaseService {
 
                         // this lambda to load the documents to specified collection
 
-                        loadDirs(new File(getMasterDir()
+                        loadDirs(new File(getDatabaseDir()
                                 + "/"
                                 + databaseGroup.get(collectionFinalIterator).getDatabaseName()
                                 + "/"
@@ -63,7 +63,7 @@ public class DatabaseService {
 
                                     // this lambda to load the JSON Objects to specified document
                                     listFiles(
-                                            getMasterDir()
+                                            getDatabaseDir()
                                                     + "/"
                                                     + databaseGroup.get(collectionFinalIterator).getDatabaseName()
                                                     + "/"
@@ -75,7 +75,7 @@ public class DatabaseService {
                                                             .get(databaseFinalIterator)
                                                             .get(collectionFolder.getName())
                                                             .get(documentFolder.getName())
-                                                            .add(readFile(getMasterDir()
+                                                            .add(readFile(getDatabaseDir()
                                                                     + "/"
                                                                     + databaseGroup.get(collectionFinalIterator).getDatabaseName()
                                                                     + "/"

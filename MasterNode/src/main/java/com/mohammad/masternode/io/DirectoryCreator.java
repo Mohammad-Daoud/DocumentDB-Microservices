@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class DirectoryCreator {
-    private static final File MASTER_DIR = new File("C:/Users/mdss4/Documents/Atypon/DocumentDB/MasterNode/storage/master-node");
+    private static final File MASTER_DIR = new File("storage/master-node");
     private final AppLogger LOGGER =  AppLogger.create("DirectoryCreator logger");
     private static volatile DirectoryCreator creator;
 

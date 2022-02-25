@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import static com.mohammad.replicanode.io.FileManager.getUsersDir;
+
 
 @Service
 public class UserService {
@@ -19,7 +21,7 @@ public class UserService {
     private static final List<User> userGroup = new ArrayList<>();
 
 
-    private final File USER_FILE = new File("C:/Users/mdss4/Documents/Atypon/DocumentDB/MasterNode/storage//admin/users/users-info.json");
+    private final File USER_FILE = new File(getUsersDir()+"/storage/admin/users/users-info.json");
     private final AppLogger logger =  AppLogger.create("UserLog");
 
 
