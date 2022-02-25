@@ -39,7 +39,12 @@ Then, run each application: except ReplicaNode
 ### Username and Password
 The admin username ***“root”*** with password ***“root”***
   I recommend changing the root password asap.
-
+* if you change the username and password for DB don't forget 
+to change it in demo App in ```ResponseHandler``` class
+```
+ private final String USERNAME = "root";
+ private final String PASSWORD = "root" ; 
+```
 #### API Calls
 To know what operation we can do just go to:
 
