@@ -7,7 +7,7 @@ authentication. Also, a demo *Todo* web application.
 
 ## Installation
 
-You should have ***Maven***, ***JDK 11*** and ***[npm]<https://www.npmjs.com/package/kill-port>***.
+You should have ***Maven***, ***JDK 11*** and ***[npm](https://www.npmjs.com/package/kill-port)***.
 
 go to ReplicaNode app and write the directory that where the MasterNode is:
 
