@@ -8,7 +8,14 @@ A microservices REST API using SpringBoot framework to build
 
 ## Installation
 You should have ***Maven*** and ***JDK 11.***
-  and run ***mvn clean install*** on each project **Very important**.
+  and run
+``` 
+mvn clean 
+```
+```
+mvn install -Dmaven.test.skip=true 
+```
+on each project **Very important**.
 
 Then, go to ReplicaNode app and write the directory that where the application is.
 ```
