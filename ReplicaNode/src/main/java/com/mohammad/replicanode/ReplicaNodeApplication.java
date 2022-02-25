@@ -16,7 +16,7 @@ public class ReplicaNodeApplication {
 	}
 
 	public static void masterDirectorySetup (){
-		setMaster("YOUR FILE LOCATION");
+		setMaster("C:/Users/mdss4/Documents/Atypon/DocumentDB/MasterNode");
 	}
 
 }

@@ -8,13 +8,12 @@ import org.springframework.web.client.RestTemplate;
 public class Replica implements Observer {
     private static final AppLogger LOGGER = AppLogger.create("Replica logger: ");
     private final PortGenerator GENERATOR = PortGenerator.getInstance();
-    private final String REPLICA_FILE = "C:/Users/mdss4/Documents/Atypon/DocumentDB/ReplicaNode/target/replica-node-0.0.1-SNAPSHOT.jar";
     private final String REPLICA_RUN_COMMAND = "java -jar "
-            + REPLICA_FILE
+            + getReplicaFile()
             + " --server.port=" + GENERATOR.generateNewPort()
             + " --eureka.client.serviceUrl.defaulZone=http://localhost:8761";
-
     private final int PORT;
+    private static String replicaFile;
 
 
     private Replica() {
@@ -52,6 +51,15 @@ public class Replica implements Observer {
     public int getPORT() {
         return PORT;
     }
+
+    public String getReplicaFile() {
+        return replicaFile;
+    }
+
+    public static void setReplicaFileLocation(String replicaFileLocation){
+        replicaFile = replicaFileLocation+"/target/replica-node-0.0.1-SNAPSHOT.jar";
+    }
+
 
     @Override
     public String toString() {

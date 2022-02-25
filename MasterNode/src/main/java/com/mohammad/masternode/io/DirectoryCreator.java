@@ -9,16 +9,18 @@ import java.io.IOException;
 
 public class DirectoryCreator {
     private static final File MASTER_DIR = new File("storage/master-node");
-    private final AppLogger LOGGER =  AppLogger.create("DirectoryCreator logger");
+    private final AppLogger LOGGER = AppLogger.create("DirectoryCreator logger");
     private static volatile DirectoryCreator creator;
 
     private DirectoryCreator() {
     }
 
     public static DirectoryCreator getInstance() {
-        synchronized (DirectoryCreator.class) {
-            if (creator == null)
-                creator = new DirectoryCreator();
+        if (creator == null) {
+            synchronized (DirectoryCreator.class) {
+                if (creator == null)
+                    creator = new DirectoryCreator();
+            }
         }
         return creator;
     }

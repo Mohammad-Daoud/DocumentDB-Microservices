@@ -14,16 +14,19 @@ import static com.mohammad.masternode.io.DirectoryCreator.getMasterDir;
 import static java.rmi.server.LogStream.log;
 
 public class DirectoryRemover {
-    private static final AppLogger LOGGER =  AppLogger.create("DirectoryRemover LOGGER");
+    private static final AppLogger LOGGER = AppLogger.create("DirectoryRemover LOGGER");
     private static DirectoryRemover remover;
 
 
-    private DirectoryRemover(){}
+    private DirectoryRemover() {
+    }
 
     public static DirectoryRemover getInstance() {
-        synchronized (DirectoryRemover.class) {
-            if (remover == null)
-                remover = new DirectoryRemover();
+        if (remover == null) {
+            synchronized (DirectoryRemover.class) {
+                if (remover == null)
+                    remover = new DirectoryRemover();
+            }
         }
         return remover;
     }
@@ -36,16 +39,16 @@ public class DirectoryRemover {
                     .map(Path::toFile)
                     .forEach(File::delete);
 
-        }catch (IOException e){
+        } catch (IOException e) {
             LOGGER.logError(e);
         }
     }
 
-    public synchronized void deleteFile(String filePath){
-        File fileToDelete = new File(getMasterDir()+"/"+filePath);
+    public synchronized void deleteFile(String filePath) {
+        File fileToDelete = new File(getMasterDir() + "/" + filePath);
 
         if (fileToDelete.delete())
-            log("file"+fileToDelete.getName()+" deleted successfully !! ");
+            LOGGER.log("file" + fileToDelete.getName() + " deleted successfully !! ");
         else
             LOGGER.logError(new NotFoundException("directory is NOT FOUND !!"));
     }
