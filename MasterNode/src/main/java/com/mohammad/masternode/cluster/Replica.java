@@ -20,7 +20,7 @@ public class Replica implements Observer {
         this.PORT = GENERATOR.getPort();
         ShellExecutor executor = ShellExecutor.create(REPLICA_RUN_COMMAND);
         executor.start();
-
+        executor.wait(20000);// to make sure that the node is up
         MasterNode.getInstance().addReplica(this);
         LOGGER.log("Replica created with port " + PORT);
     }

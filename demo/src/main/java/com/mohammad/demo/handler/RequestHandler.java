@@ -6,7 +6,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 
-public class RequestHandler{
+class RequestHandler{
 
     private static final String BASE_URI = "http://localhost:8080/";
     private final RestTemplate REST_REQUEST;

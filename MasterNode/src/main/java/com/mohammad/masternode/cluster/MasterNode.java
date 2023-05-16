@@ -15,9 +15,11 @@ public class MasterNode implements Subject {
     }
 
     public static MasterNode getInstance() {
-        synchronized (MasterNode.class) {
-            if (controller == null)
-                controller = new MasterNode();
+        if (controller == null) {
+            synchronized (MasterNode.class) {
+                if (controller == null)
+                    controller = new MasterNode();
+            }
         }
         return controller;
     }
